@@ -11,6 +11,7 @@
 	  <link rel="stylesheet" href="css/accueil.css"/>
 	</head>
 
+	<?php require_once "header.php"; ?>
 	<body>
 	    <p>Test</p>
 
