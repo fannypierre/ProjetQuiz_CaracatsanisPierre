@@ -1,67 +1,37 @@
-<?php
-//require_once "includes/functions.php";
-session_start();
+<!DOCTYPE html>
+<?php session_start();?>
+<?php if(isset($_SESSION["login"])) $user = $_SESSION["login"]; else $user = "User";?>
 
-if (!empty($_POST['login']) and !empty($_POST['password'])) {
-    $login = $_POST['login'];
-    $password = $_POST['password'];
-    $stmt = getDb()->prepare('select * from user where usr_login=? and usr_password=?');
-    $stmt->execute(array($login, $password));
-    if ($stmt->rowCount() == 1) {
-        // Authentication successful
-        $_SESSION['login'] = $login;
-        redirect("index.php");
-    }
-    else {
-        $error = "Utilisateur non reconnu";
-    }
-}
-?>
+<html lang="fr">
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/accueil.css"/>
+	</head>
 
-<!doctype html>
-<html>
+	<body>
+	    <p>Test</p>
 
-<?php 
-$pageTitle = "Connexion";
-require_once "includes/head.php";
-?>
+	    <?php
+	    try {
+		    $bdd = new PDO("mysql:host=localhost;dbname=id12709408_quizprojet", "root", "root");
+	        $questions = $bdd -> query("SELECT * FROM QUESTION");
+		} catch (PDOException $e) {
+		    echo 'Connexion échouée : ' . $e->getMessage();
+		}   
+	     ?>
 
-<body>
-    <div class="container">
-        <?php require_once "includes/header.php"; ?>
+	    <div class="contenant">
+	    	<p>Affichage des questions :</p>
+	        <?php
+	            foreach($questions as $question)
+	            {
+	                echo $question["LibelleQuestion"] . "</br>";
+	            }
+	         ?>
+	    </div>
 
-        <h2 class="text-center"><?= $pageTitle ?></h2>
-
-        <?php if (isset($error)) { ?>
-            <div class="alert alert-danger">
-                <strong>Erreur !</strong> <?= $error ?>
-            </div>
-        <?php } ?>
-
-        <div class="well">
-            <form class="form-signin form-horizontal" role="form" action="login.php" method="post">
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                    <input type="text" name="login" class="form-control" placeholder="Entrez votre login" required autofocus>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <input type="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-                        <button type="submit" class="btn btn-default btn-primary"><span class="glyphicon glyphicon-log-in"></span> Se connecter</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <?php require_once "includes/footer.php"; ?>
-    </div>
-
-    <?php require_once "includes/scripts.php"; ?>
-</body>
-
+	</body>
 </html>
