@@ -1,0 +1,10 @@
+#navigation-bar {
+	padding-top: 0.3em;
+	padding-bottom: 0.3em;
+	margin-right: 0%;
+	margin-left: 0%;
+}
+
+#logo-navbar>img {
+	float: right;
+}
