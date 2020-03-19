@@ -190,18 +190,12 @@ h1 {
 	display: flex;
 }
 
-#img {
-	border: 1px solid blue;
-}
-
 #descriptif {
-	border: 1px solid red;
-	/*margin-bottom: 5%;
-
+	justify-content: center;
+	text-align: left;
+	margin-bottom: 5%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	text-align: justify;*/
 }
 
 #title {
@@ -211,9 +205,9 @@ h1 {
 	margin-right: auto;
 }
 
-/*.imgDescriptive {
+.imgDescriptive {
 	margin-left: 5%;
-}*/
+}
 
 .quiz {
 	width: 25%;
@@ -223,6 +217,29 @@ h1 {
 	font-size: large;
 	border-radius:10px;
 	text-align: center;
+}
+
+/*Version portable*/
+@media (min-width: 480px) and (max-width: 780px) {
+
+	.quiz {
+		width: 90%;
+	}
+
+	h1 {
+		width: 35%;
+	}
+}
+
+/*Version tablette*/
+@media (min-width: 781px) and (max-width: 979px) {
+	.quiz {
+		width: 45%;
+	}
+
+	h1 {
+		width: 25%;
+	}
 }
 
 /*Page de résultat (resultat.php)*/
