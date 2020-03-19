@@ -11,7 +11,7 @@
     <body>
         <h1>Titre</h1>
 
-        <form>
+        <form id="questionnaire">
             <div class="form-group">
                 <label for="question1">Question 1</label>
                 <input type="email" class="form-control" id="question1">
@@ -51,6 +51,7 @@
                     <label class="form-check-label" for="question5_Reponse2">Réponse 2</label>
                 </div>
             </div>
+            </br>
             <button type="submit" class="btn btn-danger">Valider</button>
         </form>
 

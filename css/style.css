@@ -128,7 +128,7 @@ h1 {
   .form-group {
 	  display: flex;
 	  flex-direction: column;
-	  align-items: center;
+	  /*align-items: center;*/ /*A gérer avec un id par rapport aux mêmes classes présentes dans questions.php plus nombreuses*/
   }
   
   #connexion-label, #inscription-label {
@@ -240,6 +240,12 @@ h1 {
 	h1 {
 		width: 25%;
 	}
+}
+
+/*Page questions du quiz*/
+#questionnaire {
+	width: 60%;
+	margin-left: 20%;
 }
 
 /*Page de résultat (resultat.php)*/
