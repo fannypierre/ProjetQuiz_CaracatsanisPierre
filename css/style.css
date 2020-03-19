@@ -242,6 +242,12 @@ h1 {
 	}
 }
 
+/*Page profil*/
+#infosPerso {
+	width: 60%;
+	margin-left: 25%;
+}
+
 /*Page questions du quiz*/
 #questionnaire {
 	width: 60%;
@@ -251,6 +257,7 @@ h1 {
 /*Page de résultat (resultat.php)*/
 #res {
 	text-align: center;
+	margin-top: 5%;
 }
 
 a:link, a:hover, a:focus, a:visited, a:active {
