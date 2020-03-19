@@ -5,8 +5,8 @@
 
 <html lang="fr">
 	
-	<?php require_once "head.php"; ?>
-	<?php require_once "header.php"; ?>
+	<?php require_once "includes/head.php"; ?>
+	<?php require_once "includes/header.php"; ?>
 
     <body>
         <h1>Profil</h1>
