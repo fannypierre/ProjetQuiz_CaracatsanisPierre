@@ -17,16 +17,18 @@
 	    }
 	    else { //Sinon on essaye de l'ajouter à la BD
 	    	if ($mdp != $mdpConfirmation) {
-	    		$_SESSION['erreur'] = "Erreur : vous devez les mots de passe de correspondent pas";
+	    		$_SESSION['erreur'] = "Erreur : les mots de passe de correspondent pas";
 	    		header('Location: index.php'); 
 	    	} else {
+	    		//$bdd = getDb();
 	    		if ($mdp == "LeMotDePasseAdmin") {
-	    			$ajout = getDb()->prepare('insert into UTILISATEUR values (?, ?, 1)');
+	    			$ajout = getDb()->prepare('insert into UTILISATEUR (Login, Mdp, Droits) values (?, ?, 1)');
 	    		} else {
-	    			$ajout = getDb()->prepare('insert into UTILISATEUR values (?, ?, 0)');
+	    			$ajout = getDb()->prepare('insert into UTILISATEUR (Login, Mdp, Droits) values (?, ?, 0)');
 	    		}
-	    		$ajout->execute(array($email, $mdp));
-	    		header('Location: accueilQuiz.php'); 
+	    		$ajout->execute(array($email, $mdp)); //C'EST ICI QUE CA FAIT BUGUER
+	    		$_SESSION['email'] = $email;
+	    		header('Location: accueilQuiz.php');
 	    	}
 	    }
 	} else {
