@@ -3,28 +3,6 @@
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
-
-	if (!empty($_POST['email']) and !empty($_POST['mdp'])) {  //ATTENTION DANS LA BD LE CHAMP CORRESPONDANT A L'EMAIL S'APPELLE LOGIN
-	    $email = $_POST['email'];
-	    $mdp = $_POST['mdp'];
-	    $req = getDb()->prepare('select * from utilisateur where Login=? and Mdp=?');
-	    $req->execute(array($email, $mdp));
-
-	    if ($req->rowCount() == 1) {
-	        $_SESSION['email'] = $email;
-	        
-	        redirecte("ExempleConnexionBD.php");
-	        //redirecte("accueilQuiz.php"); //Diriger vers l'accueil jeu
-	    }
-	    else {
-	        $erreur = "Utilisateur non reconnu";
-	    }
-
-	    // $ajout = getDb()->prepare('insert into UTILISATEUR values (?, ?, 0)');
-	    // $ajout->execute(array($email, $mdp));
-
-	    //TODO : vérifier la justesse des infos en cas de connexion, insérer les infos en cas d'inscription
-	}
 ?>
 
 <html lang="fr">
@@ -33,11 +11,13 @@
 	
 	<body>
 		<?php require_once "header.php"; ?>
-		<?php if (isset($erreur)) { ?>
+		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
-                <strong>Erreur !</strong> <?= $erreur ?>
+                <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
-        <?php } ?>
+        <?php }
+        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        ?>
 	    
 	    <div class="container-fluid" id="index">
 	    	<div id="phrase-accroche">
@@ -54,7 +34,7 @@
 		    <div class="popup-inner">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
 		        <h2>QUIZ</h2>
-		    	<form id="login-form" role="form" action="index.php" method="post">
+		    	<form id="login-form" role="form" action="login.php" method="post">
 				  	<div class="form-group">
 				    	<label for="connexion-email" id="connexion-label">Email</label> <!-- !! Récupérer l'email !! -->
 				    	<input type="email" class="form-control" id="connexion-email" placeholder="Ex : jdupond@ensc.fr" name="email">
@@ -72,7 +52,7 @@
 		    <div class="popup-inner inscription">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
 		        <h2>QUIZ</h2>
-		    	<form id="inscription-form" role="form" action="index.php" method="post">
+		    	<form id="inscription-form" role="form" action="inscription.php" method="post">
 				  	<div class="form-group">
 				    	<label for="inscription-email" id="inscription-label">Email</label> <!-- !! Récupérer l'email !! -->
 				    	<input type="email" class="form-control" id="inscription-email" placeholder="Ex : jdupond@ensc.fr" name="email">
