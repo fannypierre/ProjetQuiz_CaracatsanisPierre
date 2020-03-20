@@ -1,5 +1,3 @@
-
-
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
@@ -7,10 +5,10 @@
 
 <html lang="fr">
 	
-	<?php require_once "head.php"; ?>
+	<?php require_once "includes/head.php"; ?>
 	
 	<body>
-		<?php require_once "header.php"; ?>
+		<?php require_once "includes/header.php"; ?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>

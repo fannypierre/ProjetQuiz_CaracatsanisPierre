@@ -179,7 +179,7 @@ h1 {
 	text-decoration: none;
   }
 
-/*Page d'accueil des quizzes (accueilQuiz.php)*/
+/*Page d'accueil des quizs (accueilQuiz.php)*/
 #conteneur {
 	display: flex;
 	flex-wrap: wrap;
