@@ -34,9 +34,13 @@ if (!empty($_POST['titre'])) {
 	    $_SESSION['titreQuizModifie'] = $titre;
     }
 } else { //Si tous les champs n'ont pas été saisis
-	if (!isset($_SESSION['ajoutReponses'])) {
-		$_SESSION['erreur'] = "Veuillez indiquer un titre";
-	    header('Location: nouveauQuiz.php');
+	if (!isset($_SESSION['titreQuizModifie'])) {
+		if (!isset($_SESSION['ajoutReponses'])) {
+			$_SESSION['erreur'] = "Veuillez indiquer un titre";
+	    	header('Location: nouveauQuiz.php');
+		} else {
+			$_SESSION['erreur'] = "Veuillez indiquer une question";
+		}
 	}
 }
 

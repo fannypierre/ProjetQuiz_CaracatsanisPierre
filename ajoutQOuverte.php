@@ -26,10 +26,11 @@ if (!empty($_POST['bonne-reponse']) && !empty($_POST['mauvaise-reponse-1']) && !
 	for ($i=1; $i < 4; $i++) { //On ajoute les 3 mauvaise réponses
 		$numReponse = $numReponse + 1;
 		$mauvaiseReponse = "mauvaise-reponse-" . $i;
-		$mauvaise = $_POST[$mauvaiseReponse];
+		$numMauvaiseReponse = $_POST[$mauvaiseReponse];
+		//echo "num : ".$numMauvaiseReponse;
 
 		$req = $bdd->prepare('insert into REPONSE (numReponse, Libelle, validiteReponse) values (?, ?, 0)');
-	    $req->execute(array($numReponse, $mauvaise));
+	    $req->execute(array($numReponse, $numMauvaiseReponse));
 
 	    $jointure = $bdd->prepare('insert into ASSOCIATIONQR (NumQuestion, NumReponse) values (?, ?)'); //On lie la réponse créée et la question
 	    $jointure->execute(array($_SESSION['idQuestionModifie'], $numReponse));
