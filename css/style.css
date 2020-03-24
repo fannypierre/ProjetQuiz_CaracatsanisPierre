@@ -13,6 +13,12 @@ h1 {
 	color : #E20055;
 }
 
+#ecran-adnim {
+	color: #283B40;
+	background-color: white;
+	height: 91.7vh;
+}
+
 /* Header */
 #navigation-bar {
 	padding-top: 0.3em;
