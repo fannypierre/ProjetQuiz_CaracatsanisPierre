@@ -26,7 +26,7 @@
 	    		} else {
 	    			$ajout = getDb()->prepare('insert into UTILISATEUR (Login, Mdp, Droits) values (?, ?, 0)');
 	    		}
-	    		$ajout->execute(array($email, $mdp)); //C'EST ICI QUE CA FAIT BUGUER
+	    		$ajout->execute(array($email, $mdp));
 	    		$_SESSION['email'] = $email;
 	    		header('Location: accueilQuiz.php');
 	    	}

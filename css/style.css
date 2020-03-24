@@ -1,10 +1,9 @@
-/*Généralités*/
+/* Généralités */
 body {
 	background-color: #283B40;
 	color: white;
 	height: 91.7vh;
 }
-
 h1 {
 	text-align: center;
 	border-bottom: 3px solid white;
@@ -14,21 +13,27 @@ h1 {
 	color : #E20055;
 }
 
+/* Header */
 #navigation-bar {
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
 	margin-right: 0%;
 	margin-left: 0%;
 }
-
-#logo-navbar>img {
+#logo-navbar > img {
 	float: right;
 }
-
-/*Index*/
-#header-quiz {
+#logo-navbar{
+	padding-right: 2em;
+}
+#header_text {
+	padding-left: 0%;
+}
+#header_quizzz {
 	color: rgb(218, 46, 68);
 }
+
+/* Index */
 #index {
 	height: 100%;
 	padding: 0;
@@ -64,7 +69,6 @@ h1 {
 	min-width: 150px;
 	padding-top: 0.6em;
 }
-
 
 #img-login {
 	width: 100%;
@@ -179,7 +183,7 @@ h1 {
 	text-decoration: none;
   }
 
-/*Page d'accueil des quizs (accueilQuiz.php)*/
+/* Page d'accueil des quiz (accueilQuiz.php) */
 #conteneur {
 	display: flex;
 	flex-wrap: wrap;
@@ -219,7 +223,7 @@ h1 {
 	text-align: center;
 }
 
-/*Version portable*/
+/* Version portable */
 @media (min-width: 480px) and (max-width: 780px) {
 
 	.quiz {
@@ -231,7 +235,7 @@ h1 {
 	}
 }
 
-/*Version tablette*/
+/* Version tablette */
 @media (min-width: 781px) and (max-width: 979px) {
 	.quiz {
 		width: 45%;
@@ -242,19 +246,19 @@ h1 {
 	}
 }
 
-/*Page profil*/
+/* Page profil */
 #infosPerso {
 	width: 60%;
 	margin-left: 25%;
 }
 
-/*Page questions du quiz*/
+/* Page questions du quiz */
 #questionnaire {
 	width: 60%;
 	margin-left: 20%;
 }
 
-/*Page de résultat (resultat.php)*/
+/* Page de résultat (resultat.php) */
 #res {
 	text-align: center;
 	margin-top: 5%;
