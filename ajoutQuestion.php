@@ -35,11 +35,11 @@ if (!empty($_POST['titre'])) {
     }
 } else { //Si tous les champs n'ont pas été saisis
 	if (!isset($_SESSION['ajoutReponses'])) {
-		unset($_SESSION['ajoutReponses']);
 		$_SESSION['erreur'] = "Veuillez indiquer un titre";
 		header('Location: nouveauQuiz.php');
 	} else {
-		$_SESSION['erreur'] = "Veuillez saisir tous les champs";		
+		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
+		unset($_SESSION['ajoutReponses']);	
 	}
 }
 
