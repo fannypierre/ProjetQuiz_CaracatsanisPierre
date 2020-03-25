@@ -19,7 +19,9 @@ h1 {
 	height: 91.7vh;
 }
 
-/* Header */
+/* ============================================================ */
+/* ========================== Header ========================== */
+/* ============================================================ */
 #navigation-bar {
 	padding-top: 0.3em;
 	padding-bottom: 0.3em;
@@ -39,7 +41,9 @@ h1 {
 	color: rgb(218, 46, 68);
 }
 
-/* Index */
+/* =========================================================== */
+/* ========================== Index ========================== */
+/* =========================================================== */
 #index {
 	height: 100%;
 	padding: 0;
@@ -188,6 +192,48 @@ h1 {
 	cursor: pointer;
 	text-decoration: none;
   }
+
+/* =================================================================== */
+/* ===== Nouveau quiz + nouvelles questions + nouvelles réponses ===== */
+/* =================================================================== */
+#nouveau-quiz-container {
+	padding-top: 3em;
+	padding-left: 20%;
+	padding-right: 20%;
+	border: solid;
+	margin-left: 8%;
+	margin-right: 8%;
+	height: 85%;
+}
+#nouveau-quiz-container > h1 {
+	width: 90%;
+	margin-bottom: 1em;
+	border: solid;
+	border-radius: 1em;
+	color: white;
+	background-color: #E20055;
+	height: 1.5em;
+}
+#ajout-question-container {
+	padding-top: 3em;
+	padding-left: 20%;
+	padding-right: 20%;
+	border: solid;
+	margin-left: 8%;
+	margin-right: 8%;
+}
+
+#ajout-question-container > h1 {
+	width: 90%;
+	margin-bottom: 1em;
+	border: solid;
+	border-radius: 1em;
+	color: white;
+	background-color: #E20055;
+	height: 1.5em;
+}
+
+
 
 /* Page d'accueil des quiz (accueilQuiz.php) */
 #conteneur {
