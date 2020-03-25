@@ -6,7 +6,7 @@
 if (!empty($_POST['bonne-reponse']) && !empty($_POST['mauvaise-reponse-1']) && !empty($_POST['mauvaise-reponse-2']) && !empty($_POST['mauvaise-reponse-3'])) {
 
 	$bdd = getDb();
-	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
+	//On recupère le numéro de la question à insérer par rapport aux autres réponses présentes dans la BD
 	$reponses = $bdd->query("Select * from REPONSE");
 	$numReponse = -1;
 	foreach ($reponses as $reponse) {
@@ -35,7 +35,7 @@ if (!empty($_POST['bonne-reponse']) && !empty($_POST['mauvaise-reponse-1']) && !
 	    $jointure->execute(array($_SESSION['idQuestionModifie'], $numReponse));
 	}
 	$_SESSION['ajoutReponses'] = "ok";
-	header('Location: ajoutQuestion.php'); //CA SERAIT BIEN D'AJOUTER UNE ALERTE POUR DIRE QUE LA QUESTION A BIEN ETE AJOUTEE
+	header('Location: ajoutQuestion.php');
 
 } else { //Si tous les champs n'ont pas été saisis
 	$_SESSION['erreur'] = "Veuillez remplir tous les champs";

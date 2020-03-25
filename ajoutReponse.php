@@ -5,7 +5,7 @@
 
 if (!empty($_POST['question'])) {
 	$bdd = getDb();
-	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
+	//On recupère le numéro de la question à insérer par rapport aux autres questions présentes dans la BD
 	$questions = $bdd->query("Select * from QUESTION");
 	$numQuestion = -1;
 	foreach ($questions as $question) {
@@ -34,6 +34,9 @@ if (!empty($_POST['question'])) {
     header('Location: ajoutQuestion.php');
 }
 ?>
+
+<!-- Problème d'affichage de 2 forms la deuxième fois, voir var_dump() -->
+
 <?php require_once "includes/head.php"; ?>
 	<body id="ecran-adnim">
 		<?php require_once "includes/header.php"; ?>
@@ -69,11 +72,11 @@ if (!empty($_POST['question'])) {
 
 
 		<!-- ========== SI LA QUESTION EST UNE QRM ==========  -->
-	    <?php } elseif ($typeQuestion == "QRM") ?>
+	    <?php } elseif ($typeQuestion == "QRM") { ?>
 	    <form id="nouveau-quiz-form" role="form" action="ajoutQRM.php" method="post">
 			<fieldset class="form-group">
 			  	<div class="form-group">
-			    	<label for="bonne-reponse" id="reponse-1"><h4>Réponse 1: </h4></label>
+			    	<label for="reponse-1" id="reponse-1"><h4>Réponse 1: </h4></label>
 			    	<input type="text" class="form-control" id="reponse-1" placeholder="Ex : 1914" name="reponse-1">
 			  	</div>
 			  	<div class="form-check form-check-inline">
@@ -87,7 +90,7 @@ if (!empty($_POST['question'])) {
 			</fieldset>
 		  	<fieldset class="form-group">
 			  	<div class="form-group">
-			    	<label for="bonne-reponse" id="reponse-2"><h4>Réponse 2: </h4></label>
+			    	<label for="reponse-2" id="reponse-2"><h4>Réponse 2: </h4></label>
 			    	<input type="text" class="form-control" id="reponse-2" placeholder="Ex : 1901" name="reponse-2">
 			  	</div>
 			  	<div class="form-check form-check-inline">
@@ -101,7 +104,7 @@ if (!empty($_POST['question'])) {
 			</fieldset>
 			<fieldset class="form-group">
 			  	<div class="form-group">
-			    	<label for="bonne-reponse" id="reponse-3"><h4>Réponse 3: </h4></label>
+			    	<label for="reponse-3" id="reponse-3"><h4>Réponse 3: </h4></label>
 			    	<input type="text" class="form-control" id="reponse-3" placeholder="Ex : 1830" name="reponse-3">
 			  	</div>
 			  	<div class="form-check form-check-inline">
@@ -115,7 +118,7 @@ if (!empty($_POST['question'])) {
 			</fieldset>
 			<fieldset class="form-group">
 			  	<div class="form-group">
-			    	<label for="bonne-reponse" id="reponse-4"><h4>Réponse 4: </h4></label>
+			    	<label for="reponse-4" id="reponse-4"><h4>Réponse 4: </h4></label>
 			    	<input type="text" class="form-control" id="reponse-4" placeholder="Ex : 1789" name="reponse-4">
 			  	</div>
 			  	<div class="form-check form-check-inline">
@@ -130,7 +133,18 @@ if (!empty($_POST['question'])) {
 		  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 		</form>
 	    
-	    <!-- !!! SI LA QUESTION EST UNE QOuverte ~ AFAIRE ~ !!! -->
+	    <!-- ========== SI LA QUESTION EST UNE QOuverte ========== -->
+	    <?php } else { ?>
+	    <form id="nouveau-quiz-form" role="form" action="ajoutQOuverte.php" method="post">
+			<fieldset class="form-group">
+			  	<div class="form-group">
+			    	<label for="reponse" id="reponse"><h4>Bonne réponse : </h4></label>
+			    	<input type="text" class="form-control" id="reponse" placeholder="Ex : 1914" name="reponse">
+			  	</div>
+			</fieldset>
+		  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
+		</form>
+		<?php } ?>
 	</body>
 
 

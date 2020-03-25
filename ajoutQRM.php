@@ -6,7 +6,7 @@
 if (!empty($_POST['radio-reponse-1']) && !empty($_POST['radio-reponse-2']) && !empty($_POST['radio-reponse-3']) && !empty($_POST['radio-reponse-4'])) {
 
 	$bdd = getDb();
-	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
+	//On recupère le numéro de la réponse à insérer par rapport aux autres réponses présentes dans la BD
 	$reponses = $bdd->query("Select * from REPONSE");
 	$numReponse = -1;
 	foreach ($reponses as $reponse) {
