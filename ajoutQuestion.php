@@ -5,9 +5,11 @@ unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 //if (!isset($_SESSION['idQuizModifie'])) {
 
-if (!empty($_POST['titre'])) {
+if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded_file($_FILES['image-quiz']['tmp_name'])) {
 	$titre = $_POST['titre'];
 	$affichage = $_POST['affichage'];
+	$description = $_POST['description-quiz'];
+	$image = $_FILES['image-quiz']['tmp_name'];
 
 	$bdd = getDb();
 	$requete = $bdd->prepare("Select * from QUESTIONNAIRE where Theme=?");
@@ -28,8 +30,8 @@ if (!empty($_POST['titre'])) {
 		}
 		$numQuestionnaire = $numQuestionnaire + 1;
 
-	    $req = getDb()->prepare('insert into QUESTIONNAIRE (NumQuestionnaire, Theme, TypeAffichage) values (?, ?, ?)');
-	    $req->execute(array($numQuestionnaire, $titre, $affichage));
+	    $req = getDb()->prepare('insert into QUESTIONNAIRE (NumQuestionnaire, Theme, TypeAffichage, Description, Image) values (?, ?, ?, ?, ?)');
+	    $req->execute(array($numQuestionnaire, $titre, $affichage, $description, $image));
 	    $_SESSION['idQuizModifie'] = $numQuestionnaire; //On sauvegarde la question qu'on est en train de modifier dans une variable de session
 	    $_SESSION['titreQuizModifie'] = $titre;
     }

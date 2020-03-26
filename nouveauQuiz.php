@@ -18,10 +18,10 @@
         ?>
         <div id="nouveau-quiz-container">
 	        <h1>Nouveau quiz</h1>
-			<form id="nouveau-quiz-form" role="form" action="ajoutQuestion.php" method="post">
+			<form enctype="multipart/form-data" id="nouveau-quiz-form" role="form" action="ajoutQuestion.php" method="post">
 				<fieldset class="form-group">
 				  	<div class="form-group">
-				    	<label for="titre" id="nouveau-quiz-titre"><h3>Titre du quiz :</h3></label> <!-- !! Récupérer l'email !! -->
+				    	<label for="titre" id="nouveau-quiz-titre"><h3>Titre du quiz :</h3></label>
 				    	<input type="text" class="form-control" id="titre" placeholder="Ex : Harry Potter" name="titre">
 				  	</div>
 				</fieldset>
@@ -36,6 +36,19 @@
 					  	<label class="form-check-label" for="continu">Continu</label>
 					</div>
 				</fieldset>
+				<fieldset class="form-group">
+				  	<div class="form-group">
+				    	<label for="description-quiz"><h5>Description du quiz :</h5></label>
+				    	<input type="text" class="form-control" id="description-quiz" name="description-quiz">
+				  	</div>
+				</fieldset>
+				<fieldset>
+					<h5> Image du quiz : </h5>
+					<label class="form-check-label" for="image-quiz">Sélectionnez une image pour votre quiz</label>
+					<input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+         			<input type="file" name="image-quiz" size=50 />
+				</fieldset>
+				<br/>
 			  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 			</form>
 		</div>
