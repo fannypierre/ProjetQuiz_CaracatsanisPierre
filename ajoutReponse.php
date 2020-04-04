@@ -35,10 +35,10 @@ if (!empty($_POST['question'])) {
 }
 ?>
 
-<!-- Problème d'affichage de 2 forms la deuxième fois, voir var_dump() -->
+
 
 <?php require_once "includes/head.php"; ?>
-	<body id="ecran-adnim">
+	<body id="ecran-admin">
 		<?php require_once "includes/header.php"; ?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">

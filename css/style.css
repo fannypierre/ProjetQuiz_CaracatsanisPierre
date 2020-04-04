@@ -13,7 +13,7 @@ h1 {
 	color : #E20055;
 }
 
-#ecran-adnim {
+#ecran-admin {
 	color: #283B40;
 	background-color: white;
 	height: 91.7vh;
@@ -64,6 +64,7 @@ h1 {
 }
 #phrase-accroche>h1 {
 	font-size: 5em;
+	width: 27%;
 }
 
 #boutons-connexion {
@@ -233,6 +234,23 @@ h1 {
 	height: 1.5em;
 }
 
+/* =================================================================== */
+/* ========================== Profil Joueur ========================== */
+/* =================================================================== */
+#profilJoueur-container {
+	width: 50%;
+	margin-top: 3em;
+	margin-left: 25%;
+	
+}
+#profilJoueur-container > h1 {
+	width : 25%;
+	margin-bottom: 1em;
+} 
+
+#profilJoueur-container > h3 {
+	margin-bottom: 1em;
+} 
 
 
 /* Page d'accueil des quiz (accueilQuiz.php) */

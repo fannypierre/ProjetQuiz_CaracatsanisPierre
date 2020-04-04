@@ -7,12 +7,15 @@
 	
 	<?php require_once "includes/head.php"; ?>
 	
-	<body id="ecran-adnim">
+	<body id="ecran-admin">
 		<?php require_once "includes/header.php"; ?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
+        <?php } else { ?>
+			<strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
+        
         <?php }
         unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
         ?>

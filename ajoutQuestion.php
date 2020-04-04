@@ -1,6 +1,6 @@
 <?php
 require_once "includes/fonctions.php";
-session_start();
+session_start();  //A VOIR SI ON DOIT LAISSER CA
 unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 //if (!isset($_SESSION['idQuizModifie'])) {
@@ -37,17 +37,17 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
     }
 } else { //Si tous les champs n'ont pas été saisis
 	if (!isset($_SESSION['ajoutReponses'])) {
-		$_SESSION['erreur'] = "Veuillez indiquer un titre";
+		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
 		header('Location: nouveauQuiz.php');
 	} else {
-		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
+		$_SESSION['erreur'] = "Veuillez indiquer un titre";
 		unset($_SESSION['ajoutReponses']);	
 	}
 }
 
 ?>
 <?php require_once "includes/head.php"; ?>
-	<body id="ecran-adnim">
+	<body id="ecran-admin">
 		<?php require_once "includes/header.php"; ?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">

@@ -14,12 +14,12 @@
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
         <?php }
-        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée
         ?>
 	    
 	    <div class="container-fluid" id="index">
 	    	<div id="phrase-accroche">
-	    		<h1>Phrase d'accroche</h1>
+	    		<h1>Bienvenue sur Quizzz</h1>
 	    	</div>
 	    	
 	    	<div id="boutons-connexion">
@@ -31,14 +31,14 @@
 		<div class="login" id="login">
 		    <div class="popup-inner">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
-		        <h2>QUIZ</h2>
+		        <h2>QUIZZZ</h2>
 		    	<form id="login-form" role="form" action="login.php" method="post">
 				  	<div class="form-group">
-				    	<label for="connexion-email" id="connexion-label">Email</label> <!-- !! Récupérer l'email !! -->
+				    	<label for="connexion-email" id="connexion-label">Email</label>
 				    	<input type="email" class="form-control" id="connexion-email" placeholder="Ex : jdupond@ensc.fr" name="email">
 				  	</div>
 				 	<div class="form-group">
-				    	<label for="connexion-mdp" id="connexion-label">Mot de passe</label> <!-- !! Récupérer le MDP !! -->
+				    	<label for="connexion-mdp" id="connexion-label">Mot de passe</label>
 				    	<input type="password" class="form-control" id="connexion-mdp" name="mdp">
 				  	</div>
 				  	<button type="submit" class="btn" id="login-bouton-valider">Valider</button>
@@ -49,14 +49,14 @@
 		<div class="login" id="inscription">
 		    <div class="popup-inner inscription">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
-		        <h2>QUIZ</h2>
+		        <h2>QUIZZZ</h2>
 		    	<form id="inscription-form" role="form" action="inscription.php" method="post">
 				  	<div class="form-group">
-				    	<label for="inscription-email" id="inscription-label">Email</label> <!-- !! Récupérer l'email !! -->
+				    	<label for="inscription-email" id="inscription-label">Email</label>
 				    	<input type="email" class="form-control" id="inscription-email" placeholder="Ex : jdupond@ensc.fr" name="email">
 				  	</div>
 				 	<div class="form-group">
-				    	<label for="inscription-mdp" id="inscription-label">Mot de passe</label> <!-- !! Récupérer le MDP !! -->
+				    	<label for="inscription-mdp" id="inscription-label">Mot de passe</label>
 				    	<input type="password" class="form-control" id="inscription-mdp" name="mdp">
 				  	</div>
 				  	<div class="form-group">
