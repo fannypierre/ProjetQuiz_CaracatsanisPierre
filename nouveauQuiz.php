@@ -13,11 +13,8 @@
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
-        <?php } else { ?>
-			<strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
-        
-        <?php }
-        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        <?php 
+        unset($_SESSION['erreur']); } //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
         ?>
         <div id="nouveau-quiz-container">
 	        <h1>Nouveau quiz</h1>

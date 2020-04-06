@@ -40,8 +40,9 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
 		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
 		header('Location: nouveauQuiz.php');
 	} else {
-		$_SESSION['erreur'] = "Veuillez indiquer un titre";
-		unset($_SESSION['ajoutReponses']);	
+		if ($_SESSION['ajoutReponses'] != "ok") {
+			$_SESSION['erreur'] = "Veuillez indiquer un titre";
+		}
 	}
 }
 
