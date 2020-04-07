@@ -38,8 +38,9 @@ if (!empty($_POST['bonne-reponse']) && !empty($_POST['mauvaise-reponse-1']) && !
 	header('Location: ajoutQuestion.php');
 
 } else { //Si tous les champs n'ont pas été saisis
-	$_SESSION['ajoutReponses'] = "pas bon";
+	$_SESSION['ajoutReponses'] = "champs non remplis";
 	$_SESSION['erreur'] = "Veuillez remplir tous les champs";
+	$_SESSION['typeQuestion'] = "QRU";
     header('Location: ajoutReponse.php');
 }
 ?>

@@ -29,9 +29,17 @@ if (!empty($_POST['question'])) {
     $_SESSION['idQuestionModifie'] = $numQuestion;
 
 } else { //Si tous les champs n'ont pas été saisis
-	$_SESSION['ajoutReponses'] = "pas bon";
-	$_SESSION['erreur'] = "Veuillez proposer une question...";
-    header('Location: ajoutQuestion.php');
+	if ($_SESSION['ajoutReponses'] == "champs non remplis") {
+		$_SESSION['erreur'] = "Veuillez entrer toutes les réponses";
+		$typeQuestion = $_SESSION['typeQuestion'];
+		echo $typeQuestion . "test";
+		$libelle = $_POST['question'];
+	} else {
+		$_SESSION['ajoutReponses'] = "pas bon";
+		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
+	    header('Location: ajoutQuestion.php');
+	}
+	
 }
 ?>
 

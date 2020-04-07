@@ -3,7 +3,7 @@
 	session_start();
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
-if (!empty($_POST['radio-reponse-1']) && !empty($_POST['radio-reponse-2']) && !empty($_POST['radio-reponse-3']) && !empty($_POST['radio-reponse-4'])) {
+if (!empty($_POST['reponse-1']) && !empty($_POST['reponse-2']) && !empty($_POST['reponse-3']) && !empty($_POST['reponse-4'])) {
 
 	$bdd = getDb();
 	//On recupère le numéro de la réponse à insérer par rapport aux autres réponses présentes dans la BD
@@ -39,7 +39,9 @@ if (!empty($_POST['radio-reponse-1']) && !empty($_POST['radio-reponse-2']) && !e
 	header('Location: ajoutQuestion.php');
 
 } else { //Si tous les champs n'ont pas été saisis
+	$_SESSION['ajoutReponses'] = "champs non remplis";
 	$_SESSION['erreur'] = "Veuillez remplir tous les champs";
+	$_SESSION['typeQuestion'] = "QRM";
     header('Location: ajoutReponse.php');
 }
 ?>

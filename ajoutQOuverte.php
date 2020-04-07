@@ -27,7 +27,9 @@ if (!empty($_POST['reponse'])) {
 	header('Location: ajoutQuestion.php');
 
 } else { //Si tous les champs n'ont pas été saisis
-	$_SESSION['erreur'] = "Veuillez remplir tous les champs";
+    $_SESSION['ajoutReponses'] = "champs non remplis";
+	$_SESSION['erreur'] = "Veuillez indiquer la réponse";
+	$_SESSION['typeQuestion'] = "QOuverte";
     header('Location: ajoutReponse.php');
 }
 ?>

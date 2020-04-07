@@ -238,6 +238,35 @@ h1 {
 }
 
 /* =================================================================== */
+/* ========================== Accueil admin ========================== */
+/* =================================================================== */
+#accueil-admin > h1 {
+	margin-top: 2em;
+	width: 80%;
+	color: #283B40;
+	border: solid;
+	padding-top: 0.6em;
+	padding-bottom: 0.6em;
+}
+
+#accueil-admin-bouttons {
+	display: flex;
+	justify-content: center;
+	margin-top: 7em;
+}
+
+#accueil-admin-bouttons > a {
+	background-color: #E20055;
+	color: white; 
+	font-size: larger;
+	width: 12em;
+	height: 12em;
+	border-radius: 12em;
+	padding-top: 5em;
+	margin: 4em;
+}
+
+/* =================================================================== */
 /* ========================== Profil Joueur ========================== */
 /* =================================================================== */
 #profilJoueur-container {

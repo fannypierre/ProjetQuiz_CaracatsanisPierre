@@ -1,7 +1,6 @@
 <?php
 require_once "includes/fonctions.php";
-session_start();  //A VOIR SI ON DOIT LAISSER CA
-unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
+session_start();
 
 //if (!isset($_SESSION['idQuizModifie'])) {
 
@@ -41,7 +40,7 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
 		header('Location: nouveauQuiz.php');
 	} else {
 		if ($_SESSION['ajoutReponses'] != "ok") {
-			$_SESSION['erreur'] = "Veuillez indiquer un titre";
+			$_SESSION['erreur'] = "Veuillez saisir tous les champs";
 		}
 	}
 }
@@ -54,8 +53,9 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
-        <?php }
-        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        <?php
+        //unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        }
         ?>
 
 	    <?php if (isset($_SESSION['ajoutReponses'])) {
@@ -72,7 +72,7 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
 		    <form id="nouveau-quiz-form" role="form" action="ajoutReponse.php" method="post">
 				<fieldset class="form-group">
 				  	<div class="form-group">
-				    	<label for="titre" id="nouvelle-question"><h3>Question :</h3></label>
+				    	<label for="titre" id="nouvelle-question"><h3>Question à ajouter :</h3></label>
 				    	<input type="text" class="form-control" id="question" placeholder="Ex : Quelle est la couleur du cheval blanc d'Henry IV ?" name="question">
 				  	</div>
 				</fieldset>
