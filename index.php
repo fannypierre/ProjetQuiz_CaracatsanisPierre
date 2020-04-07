@@ -8,7 +8,7 @@
 	<?php require_once "includes/head.php"; ?>
 	
 	<body>
-		<?php require_once "includes/header.php"; ?>
+		<?php require_once "includes/headerConnexion.php"; ?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
