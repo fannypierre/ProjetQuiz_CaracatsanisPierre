@@ -17,11 +17,6 @@
 		        <?php
 		            $lignes = get_questionnaires();
 		            if (isset($lignes)) {
-		                /*foreach ($lignes as $ligne) {
-		                	?>
-		                	<a href='modifQuiz.php?quiz_id="$ligne["NumQuestionnaire"]"' class="list-group-item list-group-item-action"><?php echo $ligne["Theme"] ?></a>
-		                	<?php
-		                }*/
 		                foreach ($lignes as $ligne) {
                         	echo "<a href='modifQuiz.php?quiz_id=". $ligne["NumQuestionnaire"] . "' class='list-group-item list-group-item-action'>". $ligne["Theme"] ."</a>";
                         

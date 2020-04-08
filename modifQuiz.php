@@ -28,6 +28,14 @@
         <?php   
             } unset($_SESSION['majQuestion']);
         ?>
+        <?php 
+            if (isset($_SESSION['ajoutReponses']) && $_SESSION['ajoutReponses']=="ok") { ?>
+                <div class="alert alert-success" role="alert">
+                    Question et réponses ajoutées !
+                </div>
+        <?php   
+            } unset($_SESSION['ajoutReponses']);
+        ?>
 
         <?php
             $theme = get_quizz_theme($quiz_id)["Theme"];
@@ -35,7 +43,7 @@
                 echo "<h1>".$theme."</h1>";
             }
         ?>
-        <div>
+        <div id="nouveau-quiz-container">
             <h3>Quelle question voulez-vous modifier ?</h3>
             <?php
                 $lignes = get_quizz($quiz_id);
@@ -53,6 +61,8 @@
                                 break;
                         }
                     }
+                    echo "<a id='bouton-suppression-modification' href='supprimerQuestions.php?question_id=". $ligne["NumQuestion"] . "&quiz_id=". $quiz_id."'>Supprimer une question</a>";
+                    echo "<a id='bouton-suppression-modification' href='modifAjoutQuestion.php?quiz_id=". $quiz_id."'>Ajouter une question</a>";
                 }
             ?>
         </div>

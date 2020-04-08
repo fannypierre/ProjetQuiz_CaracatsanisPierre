@@ -1,7 +1,9 @@
 <?php
 	require_once "includes/fonctions.php";
+	require_once "connexionBD.php";
 	session_start();
-	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
+
+$quiz_id = $_GET["quiz_id"];
 
 if (!empty($_POST['question'])) {
 	$bdd = getDb();
@@ -22,27 +24,24 @@ if (!empty($_POST['question'])) {
     $req->execute(array($numQuestion, $typeQuestion, $libelle));
 
  	// //On lie la question créée et le questionnaire
-    $idQuiz = $_SESSION['idQuizModifie'];
     $jointure = $bdd->prepare('insert into ASSOCIATIONQQ (NumQuestionnaire, NumQuestion) values (?, ?)');
-    $jointure->execute(array($idQuiz, $numQuestion));
+    $jointure->execute(array($quiz_id, $numQuestion));
 
     $_SESSION['idQuestionModifie'] = $numQuestion;
 
 } else { //Si tous les champs n'ont pas été saisis
 	if ($_SESSION['ajoutReponses'] == "champs non remplis") {
-		$_SESSION['erreur'] = "Veuillez entrer toutes les réponses";
+		//$_SESSION['erreur'] = "Veuillez entrer toutes les réponses";
 		$typeQuestion = $_SESSION['typeQuestion'];
 		$libelle = $_POST['question'];
 	} else {
 		$_SESSION['ajoutReponses'] = "pas bon";
 		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
-	    header('Location: ajoutQuestion.php');
+		$location = "modifAjoutQuestion.php?quiz_id=".$quiz_id;
+	    header("Location: $location");
 	}
-	
 }
 ?>
-
-
 
 <?php require_once "includes/head.php"; ?>
 	<body id="ecran-admin">
@@ -52,16 +51,16 @@ if (!empty($_POST['question'])) {
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
             </div>
         <?php }
-        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        //unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
         ?>
 		
 		<div id="ajout-question-container">
-		    <h1><?php echo $_SESSION['titreQuizModifie']; ?></h1>
+		    <h1><?php echo get_quizz_theme($quiz_id)["Theme"]; ?></h1>
 		    <h3><?php echo $libelle; ?></h3>
 		    <!-- ========== SI LA QUESTION EST UNE QRU ========== -->
 		    <?php if ($typeQuestion == "QRU") {
 			?>
-			<form id="nouveau-quiz-form" role="form" action="ajoutQRU.php" method="post">
+			<form id="nouveau-quiz-form" role="form" <?php echo "action='modifAjoutQRU.php?quiz_id=".$quiz_id."'"; ?> method="post">
 				<fieldset class="form-group">
 				  	<div class="form-group">
 				    	<label for="bonne-reponse" id="nouvelle-reponse"><h4>Bonne réponse : </h4></label>
@@ -82,13 +81,14 @@ if (!empty($_POST['question'])) {
 				    	<input type="text" class="form-control" id="mauvaise-reponse-3" placeholder="Ex : Bleu" name="mauvaise-reponse-3">
 				  	</div>
 				</fieldset>
+				<input type="hidden" id="quiz_id" <?php echo "value='".$quiz_id."'"?>name="quiz_id" />
 			  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 			</form>
 
 
 			<!-- ========== SI LA QUESTION EST UNE QRM ==========  -->
 		    <?php } elseif ($typeQuestion == "QRM") { ?>
-		    <form id="nouveau-quiz-form" role="form" action="ajoutQRM.php" method="post">
+		    <form id="nouveau-quiz-form" role="form" <?php echo "action='modifAjoutQRM.php?quiz_id=".$quiz_id."'"; ?> method="post">
 				<fieldset class="form-group">
 				  	<div class="form-group">
 				    	<label for="reponse-1" id="reponse-1"><h4>Réponse 1: </h4></label>
@@ -145,18 +145,20 @@ if (!empty($_POST['question'])) {
 					  	<label class="form-check-label" for="faux">Mauvaise réponse</label>
 					</div>
 				</fieldset>
+				<input type="hidden" id="quiz_id" <?php echo "value='".$quiz_id."'"?>name="quiz_id" />
 			  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 			</form>
 		    
 		    <!-- ========== SI LA QUESTION EST UNE QOuverte ========== -->
 		    <?php } else { ?>
-		    <form id="nouveau-quiz-form" role="form" action="ajoutQOuverte.php" method="post">
+		    <form id="nouveau-quiz-form" role="form" <?php echo "action='modifAjoutQOuverte.php?quiz_id=".$quiz_id."'"; ?> method="post">
 				<fieldset class="form-group">
 				  	<div class="form-group">
 				    	<label for="reponse" id="reponse"><h4>Bonne réponse : </h4></label>
 				    	<input type="text" class="form-control" id="reponse" placeholder="Ex : 1914" name="reponse">
 				  	</div>
 				</fieldset>
+				<input type="hidden" id="quiz_id" <?php echo "value='".$quiz_id."'"?>name="quiz_id" />
 			  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 			</form>
 			<?php } ?>
