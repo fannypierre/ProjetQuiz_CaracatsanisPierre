@@ -2,7 +2,6 @@
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
-unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 $question_id = $_GET['question_id'];
 $quiz_id = $_GET['quiz_id'];
@@ -19,10 +18,9 @@ if (!empty($_POST['question']) && !empty($_POST['bonne-reponse']) && !empty($_PO
 	$requete1 = $bdd->prepare("UPDATE QUESTION SET LibelleQuestion = ? WHERE NumQuestion = ?");
     $requete1->execute(array($question, $question_id));
 
-	//Update bonne reponse
+	//Update bonne et mauvaises reponses
 	$answers = get_quizz_answers($question_id);
 	
-	//Update mauvaises reponses
 	$indice = 0;
     foreach ($answers as $answer) {
     	$requete1 = $bdd->prepare("UPDATE REPONSE SET Libelle = ? WHERE NumReponse = ?");
@@ -44,8 +42,6 @@ if (!empty($_POST['question']) && !empty($_POST['bonne-reponse']) && !empty($_PO
 	if (isset($_POST["premierPassage"])) {
 		$_SESSION['erreur'] = "Veuillez remplir tous les champs pour modifier la question";
 		unset($_POST["premierPassage"]);
-		$location = "modifQuiz.php?quiz_id=".$quiz_id;
-		header("Location: $location");
 	}
 }
 
@@ -58,6 +54,13 @@ if (!empty($_POST['question']) && !empty($_POST['bonne-reponse']) && !empty($_PO
         $url = "modifQRU.php?quiz_id=" . $quiz_id . "&question_id=" . $question_id; 
         ?>
 
+		<?php if (isset($_SESSION['erreur'])) { ?>
+            <div class="alert alert-danger">
+                <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
+            </div>
+        <?php }
+        unset($_SESSION['erreur']); //On nettoie la variable de session "erreur" après l'avoir utilisée (c'est peut être sale attention)
+        ?>
 		<div id="nouveau-quiz-container">
 		    <form id="modif-question-form" role="form" <?php echo "action='".$url."'"; ?> method="post">
 				<fieldset class="form-group">
