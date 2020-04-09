@@ -19,11 +19,12 @@
 		            if (isset($lignes)) {
 		                foreach ($lignes as $ligne) {
                         	echo "<a href='modifQuiz.php?quiz_id=". $ligne["NumQuestionnaire"] . "' class='list-group-item list-group-item-action'>". $ligne["Theme"] ."</a>";
-                        
                     	}
 		            }
 		        ?>
 	    	</div>
+	    	<a id='bouton-suppression-modification' href='supprimerQuestionnaire.php'>Supprimer un questionnaire</a>
+            <a id='bouton-suppression-modification' href='nouveauQuiz.php'>Ajouter un questionnaire</a>
         </div>
 	</body>
 </html>

@@ -1,13 +1,42 @@
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
+
+	$estAdmin = false;
+
+	//On vérifie si l'utilisateur est un administrateur
+	if (isset($_SESSION["email"])) {
+		$bdd = getDb();
+		$requete = $bdd->prepare("SELECT * FROM UTILISATEUR WHERE Login = ?");
+		$utilisateur = $requete->execute(array($_SESSION["email"]));
+
+		$utilisateur = $utilisateur ? $requete->fetch() : null;
+
+		if ($requete->rowCount() == 1) {
+	        if ($utilisateur["Droits"] == 1) {
+	        	$estAdmin = true;
+	        }
+	    }
+	}
 ?>
 
 <html lang="fr">
 	
-	<?php require_once "includes/head.php"; ?>
-	
-	<body>
+	<?php 
+		require_once "includes/head.php";
+
+		//On modifie l'affiche selon les droits de l'utilisateur
+		if ($estAdmin) {
+			?>
+				<body id='ecran-admin'>
+			<?php
+		} else {
+			?>
+				<body>
+			<?php
+		}
+	?>
+
 		<?php require_once "includes/header.php";?>
 
         <?php if (isset($_SESSION['erreur'])) { ?>
@@ -43,6 +72,14 @@
 			  	</div>
 			  	<button type="submit" class="btn" id="nouveauMdp-bouton-valider">Valider</button>
 			</form>
+			<?php
+
+				if ($estAdmin) {
+					?>
+						<a id='bouton-suppression-modification' href='accueilModifQuiz.php'>Gestion des questionnaires</a>
+					<?php
+				}
+			?>
 		</div>
 	</body>
 </html>
