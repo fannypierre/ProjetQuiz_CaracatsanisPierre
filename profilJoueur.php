@@ -76,7 +76,7 @@
 
 				if ($estAdmin) {
 					?>
-						<a id='bouton-suppression-modification' href='accueilModifQuiz.php'>Gestion des questionnaires</a>
+						<a id='bouton-suppression-modification' href='accueilAdmin.php'>Gestion des questionnaires</a>
 					<?php
 				}
 			?>
