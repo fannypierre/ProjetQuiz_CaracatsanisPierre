@@ -65,6 +65,7 @@
                     echo "<a id='bouton-suppression-modification' href='modifAjoutQuestion.php?quiz_id=". $quiz_id."'>Ajouter une question</a>";
                 }
             ?>
+            <a id="bouton-retour-accueil" href="accueilAdmin.php">Retourner à la page d'accueil des quiz</a>
         </div>
     </body>
 </html>

@@ -43,7 +43,7 @@
 				  	</div>
 				  	<button type="submit" class="btn" id="login-bouton-valider">Valider</button>
 				</form>
-				<a class="closepopup" href="">X</a>
+				<a id ="bouton-closepopup" class="closepopup" href="">X</a>
 			</div>
 		</div>
 		<div class="login" id="inscription">
@@ -65,7 +65,7 @@
 				  	</div>
 				  	<button type="submit" class="btn" id="inscription-bouton-valider">Valider</button>
 				</form>
-				<a class="closepopup" href="">X</a>
+				<a id ="bouton-closepopup" class="closepopup" href="">X</a>
 			</div>
 		</div>
 	</body>

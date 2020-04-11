@@ -93,6 +93,7 @@ if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded
 				</fieldset>
 			  	<button type="submit" class="btn" id="nouveau-quiz-bouton-valider">Valider</button>
 			</form>
+			<a id="bouton-retour-accueil" href="accueilAdmin.php">Retourner à la page d'accueil des quiz</a>
 		</div>
 	</body>
 

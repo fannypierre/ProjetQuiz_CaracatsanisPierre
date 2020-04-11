@@ -14,6 +14,7 @@
 	        <div id="accueil-admin-bouttons">
 				<a href="nouveauQuiz.php" class="badge">Créer un nouveau quiz</a>
 				<a href="accueilModifQuiz.php" class="badge">Modifier un ancien quiz</a>
+				<a href="supprimerQuestionnaire.php" class="badge">Supprimer un ancien quiz</a>
 			</div>
 		</div>
 	</body>

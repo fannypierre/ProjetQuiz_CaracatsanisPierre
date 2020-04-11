@@ -196,6 +196,9 @@ h1 {
 	cursor: pointer;
 	text-decoration: none;
   }
+#bouton-closepopup {
+	color: white;
+}
 
 /* =================================================================== */
 /* ===== Nouveau quiz + nouvelles questions + nouvelles réponses ===== */
@@ -267,6 +270,9 @@ h1 {
 	margin-left: 30%;
 }
 
+#bouton-retour-accueil {
+	margin-left: 60%;
+}
 /* =================================================================== */
 /* ========================== Accueil admin ========================== */
 /* =================================================================== */
