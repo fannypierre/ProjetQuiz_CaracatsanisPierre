@@ -1,8 +1,9 @@
+<?php require_once "connexionBD.php" ?>
+<?php session_start(); ?>
+<?php if (isset($_SESSION["login"])) $user = $_SESSION["login"];
+else $user = "User"; ?>
+
 <DOCTYPE html>
-    <?php require_once "connexionBD.php" ?>
-    <?php session_start(); ?>
-    <?php if (isset($_SESSION["login"])) $user = $_SESSION["login"];
-    else $user = "User"; ?>
 
     <html lang="fr">
 
@@ -28,22 +29,16 @@
                                     </div></div></div>";
                 }
             }
+
+            /*faire un pop up, radio button, sélection du niveau de difficulté
+            enregistrer ce niveau de difficulté dans $niv_difficulte => $_GET
+            dans questions if($niv_difficulte == "facile") { ????}
+            else if ($niv_difficulte == "moyen") { ?????}
+            else { code actuel}
+            */
+
             ?>
-
-
-            <div class="quiz">
-                <p id="title"><strong>Titre</strong></p>
-                <div id="contenu">
-                    <img src="images/hp.png" width="50%" class="imgDescriptive">
-                    <div id="descriptif">
-                        <p>Venez tester vos connaissances sur l'univers d'Harry Potter avec ce quiz</p>
-                        <form name="jouer" action="questions.php" method="post">
-                            <button type="submit" class="btn btn-danger">Jouer</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </body>
 
-    </html>
+</html>
