@@ -16,6 +16,7 @@ else $user = "User"; ?>
 
         <div id="conteneur">
             <?php
+            //Affichage de tous les questionnaires sur la page d'accueil
             $lignes = get_questionnaires();
             if (isset($lignes)) {
                 foreach ($lignes as $ligne) {
@@ -30,10 +31,14 @@ else $user = "User"; ?>
                             </div>
                         </div>";
                     
+                    /*Pop-up permettant de choisir la difficulté du quiz sélectionné 
+                    Récupération du niveau de difficulté grâce à la méthode POST et de l'id du quiz grâce à la méthode GET
+                    */
                     echo '<div class="login" id="choixDifficulte">
                         <div class="popup-inner">
                             <img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
                             <h2>QUIZZZ</h2>
+                            
                             <form id="difficulte-form" role="form" action="questions.php?quiz_id='.$ligne["NumQuestionnaire"]. '" method="post">
                                 <div>
                                     <input type="radio" id="facile" name="difficulte" value="facile" checked>
