@@ -9,6 +9,12 @@ require_once "connexionBD.php";
 $quizz_id = $_GET['quiz_id'];
 ?>
 
+<?php
+$cookie_name = "timer";
+$cookie_value = time();
+setcookie($cookie_name, $cookie_value, time() + 86400, "/");
+?>
+
 <!DOCTYPE html>
 
 <html lang="fr">
@@ -23,10 +29,6 @@ $quizz_id = $_GET['quiz_id'];
     ?>
 
     <?php
-    //TODO : niveaux de difficulté
-
-    //Lancement timer
-    $timer_start = microtime_float();
     $affichage = get_quizz_affichage($quizz_id)["TypeAffichage"];
     echo '<form id="questionnaire" action="resultat.php?quiz_id='.$quizz_id.'" method="post">';
     
@@ -152,8 +154,6 @@ $quizz_id = $_GET['quiz_id'];
                 }
                 $index++;
                 echo '<br/>';
-                //echo "<a href='questions.php?quiz_id=".$quizz_id."&page=".($page-1)."' class='btn btn-danger' style='color: white'>Précédent</a>&nbsp;&nbsp;&nbsp;";
-                //echo "<a href='questions.php?quiz_id=".$quizz_id."&page=".($page+1)."' class='btn btn-danger' style='color: white'>Suivant</a>";
                 if(($key+1) > 1){
                     echo "<button type='button' onclick='previousQuestion()' class='btn btn-danger' style='color: white'>Precedent</button>&nbsp;&nbsp;&nbsp;";
                 }
@@ -165,16 +165,11 @@ $quizz_id = $_GET['quiz_id'];
                 echo "</div>";
                 
                 
-            } //TODO : affichage question par question et lien entre les questions (une page différente pour chaque id de question ?)
-            //TODO : dernier bouton envoyer, comment faire la différence ?
+            }
         }
     }
     echo '<br/>';
     echo "<input type='submit' class='btn btn-danger' style='color: white' value='Envoyer'>";
-    
-    //Fin timer (comment il arrive à savoir que c'est quand on appuie sur le bouton ?) A tester quand traitement des réponses sera fait
-    $timer_end = microtime_float();
-    $time = $timer_end - $timer_start;
     ?>
     </form>
 
