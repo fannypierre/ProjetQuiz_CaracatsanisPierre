@@ -83,6 +83,10 @@ h1 {
 	min-width: 150px;
 	padding-top: 0.6em;
 }
+#index-manuel > p {
+	margin-left: 25vh;
+	margin-top: 2em;
+}
 
 #img-login {
 	width: 100%;

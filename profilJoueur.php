@@ -84,6 +84,7 @@
 					<?php
 				}
 			?>
+			<p>Consulter le <a href="images/manuelUtilisation.pdf" target=”_blank”>manuel d'utilisation du site</a></p>
 		</div>
 	</body>
 </html>

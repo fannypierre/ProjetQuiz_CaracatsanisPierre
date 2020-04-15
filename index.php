@@ -21,14 +21,19 @@
 	    <div class="container-fluid" id="index">
 	    	<div id="phrase-accroche">
 	    		<h1>Bienvenue sur Quizzz</h1>
+	    		
 	    	</div>
 	    	
 	    	<div id="boutons-connexion">
 	    		<a type="button" class="btn btn-outline-dark btn-lg" href="#login">Se connecter</a>
 				<a type="button" class="btn btn-outline-dark btn-lg" href="#inscription">S'inscrire</a>
+
+	    	</div>
+	    	<div id="index-manuel">
+	    		<p>Consulter le <a href="images/manuelUtilisation.pdf" target=”_blank”>manuel d'utilisation du site</a></p>
 	    	</div>
 		</div>
-		<!-- Soit l'utilisateur est déjà enregistré et il se connecte -->
+		<!-- Soit l'utilisateur est déjà enregistré et il décide de se connecter -->
 		<div class="login" id="login">
 		    <div class="popup-inner">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">

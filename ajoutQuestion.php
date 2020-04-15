@@ -4,35 +4,42 @@ require_once "includes/fonctions.php";
 session_start();
 
 if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded_file($_FILES['image-quiz']['tmp_name'])) {
-	$titre = $_POST['titre'];
-	$affichage = $_POST['affichage'];
-	$description = $_POST['description-quiz'];
-	$image = $_FILES['image-quiz']['tmp_name'];
 
-	$bdd = getDb();
-	$requete = $bdd->prepare("Select * from QUESTIONNAIRE where Theme=?");
-    $requete->execute(array($titre));
+	//On vérifie si le nom du quiz entré n'est pas trop grand pour qu'il rentre dans la BD
+	if (strlen($_POST['titre']) >=40) {
+		$_SESSION['erreur'] = "Veuillez choisir un nom de thème moins grand";
+		header('Location: nouveauQuiz.php');
+	} else {
+		$titre = $_POST['titre'];
+		$affichage = $_POST['affichage'];
+		$description = $_POST['description-quiz'];
+		$image = $_FILES['image-quiz']['tmp_name'];
 
-    if ($requete->rowCount() == 1) { //Si le quiz existe déjà : erreur
-        $_SESSION['erreur'] = "Quiz déjà existant !";
-        header('Location: nouveauQuiz.php');
-    }
-    else { 
-    	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
-		$questionnaires = $bdd->query("Select * from QUESTIONNAIRE");
-		$numQuestionnaire = -1;
-		foreach ($questionnaires as $questionnaire) {
-			if ($questionnaire["NumQuestionnaire"] > $numQuestionnaire) {
-				$numQuestionnaire = $questionnaire["NumQuestionnaire"];
+		$bdd = getDb();
+		$requete = $bdd->prepare("Select * from QUESTIONNAIRE where Theme=?");
+	    $requete->execute(array($titre));
+
+	    if ($requete->rowCount() == 1) { //Si le quiz existe déjà : erreur
+	        $_SESSION['erreur'] = "Quiz déjà existant !";
+	        header('Location: nouveauQuiz.php');
+	    }
+	    else { 
+	    	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
+			$questionnaires = $bdd->query("Select * from QUESTIONNAIRE");
+			$numQuestionnaire = -1;
+			foreach ($questionnaires as $questionnaire) {
+				if ($questionnaire["NumQuestionnaire"] > $numQuestionnaire) {
+					$numQuestionnaire = $questionnaire["NumQuestionnaire"];
+				}
 			}
-		}
-		$numQuestionnaire = $numQuestionnaire + 1;
+			$numQuestionnaire = $numQuestionnaire + 1;
 
-	    $req = getDb()->prepare('insert into QUESTIONNAIRE (NumQuestionnaire, Theme, TypeAffichage, Description, Image) values (?, ?, ?, ?, ?)');
-	    $req->execute(array($numQuestionnaire, $titre, $affichage, $description, $image));
-	    $_SESSION['idQuizModifie'] = $numQuestionnaire; //On sauvegarde la question qu'on est en train de modifier dans une variable de session
-	    $_SESSION['titreQuizModifie'] = $titre;
-    }
+		    $req = getDb()->prepare('insert into QUESTIONNAIRE (NumQuestionnaire, Theme, TypeAffichage, Description, Image) values (?, ?, ?, ?, ?)');
+		    $req->execute(array($numQuestionnaire, $titre, $affichage, $description, $image));
+		    $_SESSION['idQuizModifie'] = $numQuestionnaire; //On sauvegarde la question qu'on est en train de modifier dans une variable de session
+		    $_SESSION['titreQuizModifie'] = $titre;
+	    }
+	}
 } else { //Si tous les champs n'ont pas été saisis
 	if (!isset($_SESSION['ajoutReponses'])) {
 		$_SESSION['erreur'] = "Veuillez saisir tous les champs";
