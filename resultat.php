@@ -15,21 +15,15 @@ $quizz_id = $_GET['quiz_id'];
 
     <body>
         <?php
+            $timer_end = time();
+            $time = $timer_end - $_COOKIE['timer'];
+
             $lignes = get_quizz($quizz_id); 
-            /*echo '<pre>';
-            var_dump($_POST);
-            echo '</pre>';*/
             $score = 0;
             if (isset($_POST['answers'])) {
                 foreach ($_POST['answers'] as $question_id => $answer) {
                    $validite_answers = get_quizz_answers($question_id);
                    $question_data = get_question($question_id);
-                   /*
-                   echo '<br/><br/>';
-                   echo '<pre>';
-                   var_dump($validite_answers, $question_id, $answer);
-                   echo '</pre>';
-                    */
                    switch($question_data['Type']){
                         case "QRU":
                             foreach($validite_answers as $possible_answer){
@@ -63,7 +57,12 @@ $quizz_id = $_GET['quiz_id'];
                 }
             }                
         ?>
-        <h1>Titre</h1>
+        <?php
+            $theme = get_quizz_theme($quizz_id)["Theme"];
+            if (isset($theme)) {
+                echo "<h1>".$theme."</h1>";
+            }
+        ?>
 
         <div id="res">
             <p>Félicitations, votre score est : <?php echo $score ?></p>
@@ -80,12 +79,11 @@ $quizz_id = $_GET['quiz_id'];
                     $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore) VALUE (?, ?, ?)");
                     $requete->execute(array($user, $quizz_id, $score));
                 }
-
-                //TODO : récupérer $time
-                    //TODO : afficher $time
-                    //echo $_POST['time'];
             ?>
-            <p>Vous pouvez <a href="questions.php">refaire ce quiz</a> ou <a href="accueilQuiz.php">retourner à la page d'accueil</a></p>
+            <p>Vous avez mis <?php echo $time ?> secondes pour atteindre ce score</p>
+            <?php
+               /*echo "<p>Vous pouvez <a href='questions.php?quiz_id=".$quizz_id."'>refaire ce quiz</a> ou <a href='accueilQuiz.php'>retourner à la page d'accueil</a></p>";
+            */?>
         </div>
     </body>
 </html>
