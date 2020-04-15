@@ -35,12 +35,9 @@ $quizz_id = $_GET['quiz_id'];
         if (isset($lignes)) {
             $index = 1;
             foreach ($lignes as $ligne) {
-                echo "<label for='question" . $index . "'>" . $ligne["LibelleQuestion"] . "</label>";
-                switch ($ligne["Type"]) {
-                    case "QOuverte":
-                        echo "<input type='text' name='answers[".$ligne['NumQuestion']."]' class='form-control' id='question" . $index . "'>";
-                        break;
-                    case "QRU":
+                if($_POST['difficulte'] == "facile") {
+                    if ($ligne["Type"] == "QRU") {
+                        echo "<label for='question" . $index . "'>" . $ligne["LibelleQuestion"] . "</label>";
                         echo "<div class='form-group'>";
                         echo "<select class='form-control' name='answers[".$ligne['NumQuestion']."]' id='question" . $index . "'>";
                         $answers = get_quizz_answers($ligne["NumQuestion"]);
@@ -49,21 +46,70 @@ $quizz_id = $_GET['quiz_id'];
                             echo "<option value='" . $answer["NumReponse"] . "'>" . $answer["Libelle"] . "</option>";
                         }
                         echo "</select></div>";
-                        break;
-                    case "QRM":
-                        $answers = get_quizz_answers($ligne["NumQuestion"]);
-                        $index_answer = 1;
-                        foreach ($answers as $answer) {
-                            $html_id_answer = "question" . $index . "_Reponse" . $index_answer;
-                            echo "<div class='form-check'>";
-                            echo "<input name='answers[".$ligne['NumQuestion']."][]' class='form-check-input' type='checkbox' value='" . $answer["NumReponse"] . "' id='" . $html_id_answer . "'>
-                            <label class='form-check-label' for='" . $html_id_answer . "'>" . $answer["Libelle"] . "</label>";
-                            echo "</div>";
-                            $index_answer++;
-                        }
-
-                        break;
+                    }
                 }
+                elseif ($_POST['difficulte'] == "moyen") {
+                    if ($ligne["Type"] == "QRU" || $ligne["Type"] == "QRM") {
+                        echo "<label for='question" . $index . "'>" . $ligne["LibelleQuestion"] . "</label>";
+                        switch ($ligne["Type"]) {
+                            case "QRU":
+                                echo "<div class='form-group'>";
+                                echo "<select class='form-control' name='answers[".$ligne['NumQuestion']."]' id='question" . $index . "'>";
+                                $answers = get_quizz_answers($ligne["NumQuestion"]);
+                                echo "<option value='-1'>Sélectionner une réponse</option>";
+                                foreach ($answers as $answer) {
+                                    echo "<option value='" . $answer["NumReponse"] . "'>" . $answer["Libelle"] . "</option>";
+                                }
+                                echo "</select></div>";
+                            break;
+                            case "QRM":
+                                $answers = get_quizz_answers($ligne["NumQuestion"]);
+                                $index_answer = 1;
+                                foreach ($answers as $answer) {
+                                    $html_id_answer = "question" . $index . "_Reponse" . $index_answer;
+                                    echo "<div class='form-check'>";
+                                    echo "<input name='answers[".$ligne['NumQuestion']."][]' class='form-check-input' type='checkbox' value='" . $answer["NumReponse"] . "' id='" . $html_id_answer . "'>
+                                    <label class='form-check-label' for='" . $html_id_answer . "'>" . $answer["Libelle"] . "</label>";
+                                    echo "</div>";
+                                    $index_answer++;
+                                }
+        
+                            break;
+                        }
+                    }
+                }
+                else {
+                    echo "<label for='question" . $index . "'>" . $ligne["LibelleQuestion"] . "</label>";
+                    switch ($ligne["Type"]) {
+                        case "QOuverte":
+                            echo "<input type='text' name='answers[".$ligne['NumQuestion']."]' class='form-control' id='question" . $index . "'>";
+                        break;
+                        case "QRU":
+                            echo "<div class='form-group'>";
+                            echo "<select class='form-control' name='answers[".$ligne['NumQuestion']."]' id='question" . $index . "'>";
+                            $answers = get_quizz_answers($ligne["NumQuestion"]);
+                            echo "<option value='-1'>Sélectionner une réponse</option>";
+                            foreach ($answers as $answer) {
+                                echo "<option value='" . $answer["NumReponse"] . "'>" . $answer["Libelle"] . "</option>";
+                            }
+                            echo "</select></div>";
+                        break;
+                        case "QRM":
+                            $answers = get_quizz_answers($ligne["NumQuestion"]);
+                            $index_answer = 1;
+                            foreach ($answers as $answer) {
+                                $html_id_answer = "question" . $index . "_Reponse" . $index_answer;
+                                echo "<div class='form-check'>";
+                                echo "<input name='answers[".$ligne['NumQuestion']."][]' class='form-check-input' type='checkbox' value='" . $answer["NumReponse"] . "' id='" . $html_id_answer . "'>
+                                <label class='form-check-label' for='" . $html_id_answer . "'>" . $answer["Libelle"] . "</label>";
+                                echo "</div>";
+                                $index_answer++;
+                            }
+    
+                        break;
+                    }
+                }
+                
                 $index++;
                 echo "<br/>";
             }
