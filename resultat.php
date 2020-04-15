@@ -1,7 +1,10 @@
 <?php 
 session_start();
-if(isset($_SESSION["login"])) $user = $_SESSION["login"]; 
-else $user = "User";
+if (isset($_SESSION["email"])) {
+    $user = $_SESSION["email"];
+} else {
+    $user = "user";
+}
 
 require_once "includes/head.php";
 require_once "includes/header.php";
