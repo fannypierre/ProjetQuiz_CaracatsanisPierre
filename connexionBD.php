@@ -1,4 +1,5 @@
 <?php
+//Connexion à la bd
 $bdd = null;
 try {
     $bdd = new PDO("mysql:host=localhost;dbname=id12709408_quizprojet", "root", "root");
@@ -7,6 +8,7 @@ try {
     echo 'Connexion échouée : ' . $e->getMessage();
 }
 
+//Fonction permettant de récupérer tous les renseignements des questionnaires de la bd
 function get_questionnaires()
 {
     global $bdd;
@@ -17,6 +19,7 @@ function get_questionnaires()
     return null;
 }
 
+//Fonction permettant de récupérer le titre (thème) du questionnaire dont l'identifiant correspond à celui passé en paramètre (obtenu avec GET)
 function get_quizz_theme($id)
 {
     global $bdd;
@@ -28,6 +31,7 @@ function get_quizz_theme($id)
     return $result ? $query->fetch() : null;
 }
 
+//Fonction permettant de récupérer le type d'affichage du questionnaire dont l'identifiant correspond à celui passé en paramètre
 function get_quizz_affichage($id)
 {
     global $bdd;
@@ -39,6 +43,7 @@ function get_quizz_affichage($id)
     return $result ? $query->fetch() : null;
 }
 
+//Fonction permettant de récupérer les questions du questionnaire dont l'identifiant correspond à celui passé en paramètre
 function get_quizz($id)
 {
     global $bdd;
@@ -51,6 +56,7 @@ function get_quizz($id)
     return $result ? $query->fetchAll() : null;
 }
 
+//Fonction permettant de récupérer les réponses correspondant à la question dont l'identifiant est passé en paramètre
 function get_quizz_answers($id_question)
 {
     global $bdd;
@@ -62,6 +68,7 @@ function get_quizz_answers($id_question)
     return $result ? $query->fetchAll(PDO::FETCH_ASSOC) : null;
 }
 
+//Fonction permettant de récupérer les informations d'une question dont l'identifiant correspond à celui passé en paramètre
 function get_question($id_question){
     global $bdd;
     $sql = "SELECT *
@@ -71,6 +78,7 @@ function get_question($id_question){
     return $result ? $query->fetchAll(PDO::FETCH_ASSOC)[0] : null;
 }
 
+//Fonction permettant de récupérer le meilleur score et le meilleur temps d'un utilisateur sur un quiz (passés en paramètre)
 function get_best_score($id, $id_user) {
     global $bdd;
     $sql = "SELECT MeilleurScore, MeilleurTemps
