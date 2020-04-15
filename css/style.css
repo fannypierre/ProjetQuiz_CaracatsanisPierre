@@ -136,7 +136,7 @@ h1 {
 	  margin-bottom: 6%;
   }
   
-  #login-form, #inscription-form {
+  #login-form, #inscription-form, #difficulte-form {
 	  width: 60%;
 	  display: flex;
 	  flex-direction: column;
