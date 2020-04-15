@@ -67,26 +67,55 @@ $quizz_id = $_GET['quiz_id'];
             }
         ?>
 
+        
+
         <div id="res">
-            <p>Félicitations, votre score est : <?php echo $score ?></p>
             <?php
+                echo "<p>Félicitations, vous avez atteint un total de ".$score." points en ".$time." secondes !</p>";
                 $best_score = get_best_score($quizz_id, $user);
-                if (isset($best_score)) {
+                if (isset($best_score) && count($best_score)>0) {
                     if ($score > $best_score[0]["MeilleurScore"]) {
-                        $requete = $bdd->prepare("UPDATE Score SET MeilleurScore = ? WHERE NumQuestionnaire = ?");
-                        $requete->execute(array($score, $quizz_id));
-                        echo "Félicitations, vous venez de battre votre record !";
+                        $requete = $bdd->prepare("UPDATE Score SET MeilleurScore = ? WHERE NumQuestionnaire = ? AND Login = ?");
+                        $requete->execute(array($score, $quizz_id, $user));
+                        echo "Félicitations, vous venez de battre votre record de bonnes réponses !";
+                    }
+
+                    if ($time < $best_score[0]["MeilleurTemps"]) {
+                        $requete = $bdd->prepare("UPDATE Score SET MeilleurTemps = ? WHERE NumQuestionnaire = ? AND Login = ?");
+                        $requete->execute(array($time, $quizz_id, $user));
+                        echo "Félicitations, vous venez de battre votre chronomètre!";
                     }
                 }
                 else {
-                    $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore) VALUE (?, ?, ?)");
-                    $requete->execute(array($user, $quizz_id, $score));
+                    $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore, MeilleurTemps) VALUE (?, ?, ?, ?)");
+                    $requete->execute(array($user, $quizz_id, $score, $time));
                 }
+               echo "<p>Vous pouvez <a href='#choixDifficulte'>refaire ce quiz</a> ou <a href='accueilQuiz.php'>retourner à la page d'accueil</a></p>";
+            
+               echo '<div class="login" id="choixDifficulte">
+               <div class="popup-inner">
+                   <img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
+                   <h2>QUIZZZ</h2>
+                   <form id="difficulte-form" role="form" action="questions.php?quiz_id='.$quizz_id. '" method="post">
+                       <div>
+                           <input type="radio" id="facile" name="difficulte" value="facile" checked>
+                           <label for="facile">Facile</label>
+                       </div>
+                       <div>
+                           <input type="radio" id="moyen" name="difficulte" value="moyen">
+                           <label for="moyen">Moyen</label>
+                       </div>
+                       <div>
+                           <input type="radio" id="difficile" name="difficulte" value="difficile">
+                           <label for="difficile">Difficile</label>
+                       </div>
+                       </br>
+                       <button type="submit" class="btn btn-light" width="50%">Valider</button>
+                   </form>
+                   <a id ="bouton-closepopup" class="closepopup" href="">X</a>
+               </div>
+           </div>';            
             ?>
-            <p>Vous avez mis <?php echo $time ?> secondes pour atteindre ce score</p>
-            <?php
-               /*echo "<p>Vous pouvez <a href='questions.php?quiz_id=".$quizz_id."'>refaire ce quiz</a> ou <a href='accueilQuiz.php'>retourner à la page d'accueil</a></p>";
-            */?>
         </div>
     </body>
 </html>

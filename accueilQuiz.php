@@ -55,10 +55,6 @@ else $user = "User"; ?>
                     </div>';
                 }
             }
-            
-            
-
-            
             ?>
         </div>
     </body>
