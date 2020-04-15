@@ -28,6 +28,17 @@ function get_quizz_theme($id)
     return $result ? $query->fetch() : null;
 }
 
+function get_quizz_affichage($id)
+{
+    global $bdd;
+    $sql = "SELECT TypeAffichage
+    FROM Questionnaire
+    WHERE NumQuestionnaire = :id";
+    $query = $bdd->prepare($sql);
+    $result = $query->execute(array(':id' => $id));
+    return $result ? $query->fetch() : null;
+}
+
 function get_quizz($id)
 {
     global $bdd;
@@ -48,5 +59,29 @@ function get_quizz_answers($id_question)
     WHERE AQR.NumQuestion = :id AND AQR.NumReponse = R.NumReponse";
     $query = $bdd->prepare($sql);
     $result = $query->execute(array(':id' => $id_question));
+    return $result ? $query->fetchAll(PDO::FETCH_ASSOC) : null;
+}
+
+function get_question($id_question){
+    global $bdd;
+    $sql = "SELECT *
+    FROM Question where NumQuestion = :id";
+    $query = $bdd->prepare($sql);
+    $result = $query->execute(array(':id' => $id_question));
+    return $result ? $query->fetchAll(PDO::FETCH_ASSOC)[0] : null;
+}
+
+function get_best_score($id, $id_user) {
+    global $bdd;
+    $sql = "SELECT MeilleurScore
+    FROM Score WHERE Login = :id_user AND NumQuestionnaire = :id";
+    $query = $bdd->prepare($sql);
+    $result = $query->execute(array(':id' => $id, ':id_user' => $id_user));
     return $result ? $query->fetchAll() : null;
+}
+
+function microtime_float() 
+{
+  list($usec, $sec) = explode(" ", microtime());
+  return ((float)$usec + (float)$sec);
 }
