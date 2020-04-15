@@ -61,31 +61,30 @@ $quizz_id = $_GET['quiz_id'];
                    }
                     
                 }
-
-                $best_score = get_best_score($quizz_id);
-                if (isset($best_score['MeilleurScore'])) {
-                    if ($score > $best_score['MeilleurScore']) {
-                        $requete = $bdd->prepare("UPDATE Score SET MeilleurScore = ? WHERE NumQuestion = ?");
-                        $requete->execute(array($score, $quizz_id));
-                        echo "Félicitations, vous venez de battre votre record !";
-                    }
-                }
-                else {
-                    $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore) VALUE (?, ?, ?)");
-                    $requete->execute(array($best_score['Login'], $quizz_id, $score));
-                }
-                    
-                    //TODO : récupérer $time
-                    //TODO : afficher $time
-                    //echo $_POST['time'];
-
             }                
         ?>
         <h1>Titre</h1>
 
         <div id="res">
             <p>Félicitations, votre score est : <?php echo $score ?></p>
-            <p>Resultat à récupérer sur la bd</p>
+            <?php
+                $best_score = get_best_score($quizz_id, $user);
+                if (isset($best_score)) {
+                    if ($score > $best_score[0]["MeilleurScore"]) {
+                        $requete = $bdd->prepare("UPDATE Score SET MeilleurScore = ? WHERE NumQuestionnaire = ?");
+                        $requete->execute(array($score, $quizz_id));
+                        echo "Félicitations, vous venez de battre votre record !";
+                    }
+                }
+                else {
+                    $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore) VALUE (?, ?, ?)");
+                    $requete->execute(array($user, $quizz_id, $score));
+                }
+
+                //TODO : récupérer $time
+                    //TODO : afficher $time
+                    //echo $_POST['time'];
+            ?>
             <p>Vous pouvez <a href="questions.php">refaire ce quiz</a> ou <a href="accueilQuiz.php">retourner à la page d'accueil</a></p>
         </div>
     </body>

@@ -71,12 +71,12 @@ function get_question($id_question){
     return $result ? $query->fetchAll(PDO::FETCH_ASSOC)[0] : null;
 }
 
-function get_best_score($id) {
+function get_best_score($id, $id_user) {
     global $bdd;
-    $sql = "SELECT Login, MeilleurScore
-    FROM Score where NumQuestionnaire = :id";
+    $sql = "SELECT MeilleurScore
+    FROM Score WHERE Login = :id_user AND NumQuestionnaire = :id";
     $query = $bdd->prepare($sql);
-    $result = $query->execute(array(':id' => $id));
+    $result = $query->execute(array(':id' => $id, ':id_user' => $id_user));
     return $result ? $query->fetchAll() : null;
 }
 
