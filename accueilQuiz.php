@@ -47,18 +47,14 @@ else $user = "User"; ?>
                                     <input type="radio" id="difficile" name="difficulte" value="difficile">
                                     <label for="difficile">Difficile</label>
                                 </div>
-                                <button type="submit" class="btn" id="login-bouton-valider">Valider</button>
+                                </br>
+                                <button type="submit" class="btn btn-light" width="50%">Valider</button>
                             </form>
                             <a id ="bouton-closepopup" class="closepopup" href="">X</a>
                         </div>
                     </div>';
                 }
             }
-            /*enregistrer ce niveau de difficulté dans $niv_difficulte => $_GET
-            dans questions if($niv_difficulte == "facile") { ????}
-            else if ($niv_difficulte == "moyen") { ?????}
-            else { code actuel}
-            */
             
             
 
