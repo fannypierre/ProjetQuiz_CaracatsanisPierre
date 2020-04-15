@@ -3,8 +3,6 @@
 require_once "includes/fonctions.php";
 session_start();
 
-
-
 if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded_file($_FILES['image-quiz']['tmp_name'])) {
 	$titre = $_POST['titre'];
 	$affichage = $_POST['affichage'];
