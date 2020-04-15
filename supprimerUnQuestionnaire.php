@@ -1,3 +1,4 @@
+<!-- Code pour supprimer un questionnaire entièrement -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";

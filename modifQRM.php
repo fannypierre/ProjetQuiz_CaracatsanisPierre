@@ -1,3 +1,4 @@
+<!-- Code pour la modification des réponses d'une QRM -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";

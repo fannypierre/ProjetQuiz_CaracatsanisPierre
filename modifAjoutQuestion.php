@@ -1,3 +1,4 @@
+<!-- Page pour indiquer les informations concernant la question à ajouter à un quiz donné -->
 <?php
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";

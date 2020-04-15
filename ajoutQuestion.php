@@ -1,8 +1,9 @@
+<!-- Code pour l'ajout d'un questionnaire dans la BD et page pour saisir une question à ajouter au questionnaire -->
 <?php
 require_once "includes/fonctions.php";
 session_start();
 
-//if (!isset($_SESSION['idQuizModifie'])) {
+
 
 if (!empty($_POST['titre']) && !empty($_POST['description-quiz']) && is_uploaded_file($_FILES['image-quiz']['tmp_name'])) {
 	$titre = $_POST['titre'];

@@ -1,3 +1,4 @@
+<!-- Page pour la modification de la réponse d'une QOuverte -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";

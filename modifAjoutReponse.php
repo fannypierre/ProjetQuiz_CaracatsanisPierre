@@ -1,3 +1,4 @@
+<!-- Code pour l'insertion d'une nouvelle question pour un quiz donné, et page pour l'ajout des réponses à la question concernée -->
 <?php
 	require_once "includes/fonctions.php";
 	require_once "connexionBD.php";

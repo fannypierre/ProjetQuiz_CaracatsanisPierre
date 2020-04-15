@@ -1,3 +1,4 @@
+<!-- Code pour l'inscription d'un nouvel utiliateur -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
@@ -16,7 +17,7 @@
 	        header('Location: index.php');
 	    }
 	    else { //Sinon on essaye de l'ajouter à la BD
-	    	if ($mdp != $mdpConfirmation) {
+	    	if ($mdp != $mdpConfirmation) { //Si les mdp rentrés ne correspondent pas
 	    		$_SESSION['erreur'] = "Erreur : les mots de passe de correspondent pas";
 	    		header('Location: index.php'); 
 	    	} else {

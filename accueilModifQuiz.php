@@ -1,3 +1,4 @@
+<!-- Page pour choisir quel quiz modifier -->
 <?php
 	session_start();
 	require_once "includes/fonctions.php";

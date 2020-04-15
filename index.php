@@ -1,3 +1,4 @@
+<!-- Première page du site : choix de se connecter ou de s'inscrire pour l'utilisateur -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
@@ -27,7 +28,7 @@
 				<a type="button" class="btn btn-outline-dark btn-lg" href="#inscription">S'inscrire</a>
 	    	</div>
 		</div>
-
+		<!-- Soit l'utilisateur est déjà enregistré et il se connecte -->
 		<div class="login" id="login">
 		    <div class="popup-inner">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">
@@ -46,6 +47,8 @@
 				<a id ="bouton-closepopup" class="closepopup" href="">X</a>
 			</div>
 		</div>
+
+		<!-- Soit c'est sa première connexion et il s'inscrit -->
 		<div class="login" id="inscription">
 		    <div class="popup-inner inscription">
 		    	<img src="images/Logo.svg" width="20%" class="d-inline-block align-top" alt="">

@@ -1,3 +1,4 @@
+<!-- Code pour la modification d'une question, et page pour la modification des questions correspondantes -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";

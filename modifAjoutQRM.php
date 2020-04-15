@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout des réponses à une QRM dans le cas d'un ajout de la question, non de la modification de la question -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

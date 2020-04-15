@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout d'une question dans la bd -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
@@ -6,7 +7,7 @@
 if (!empty($_POST['question'])) {
 
 	$bdd = getDb();
-	//On recupère le numéro du questionnaire à insérer par rapport aux autres quesionnaires présents dans la BD
+	//On recupère le numéro de la question à insérer par rapport aux autres quesionnaires présents dans la BD
 	$questions = $bdd->query("Select * from QUESTION");
 	$numQuestion = -1;
 	foreach ($questions as $question) {

@@ -1,3 +1,4 @@
+<!-- Page de création d'un quiz (saisie des informations spécifiques au nouveau quiz) -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

@@ -1,3 +1,4 @@
+<!-- Page de choix de la question à supprimer -->
 <?php
     session_start();
     require_once "includes/fonctions.php";
@@ -21,9 +22,10 @@
         ?>
 
         <?php 
+            //Si on se retrouve sur cette page parce que la question a bien été supprimée on l'indique à l'utilisateur
             if (isset($_SESSION['majQuestion'])) { ?>
                 <div class="alert alert-success" role="alert">
-                    Question et réponses mises à jour !
+                    Question et réponses supprimées !
                 </div>
         <?php   
             } unset($_SESSION['majQuestion']);

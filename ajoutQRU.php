@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout des réponses à une QRU -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

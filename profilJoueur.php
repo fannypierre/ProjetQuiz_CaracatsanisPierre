@@ -1,10 +1,11 @@
+<!-- Page du profil de l'utilsateur -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
 
 	$estAdmin = false;
 
-	//On vérifie si l'utilisateur est un administrateur
+	//On vérifie si l'utilisateur est un administrateur (pour changer au besoin l'apparence de la fenetre)
 	if (isset($_SESSION["email"])) {
 		$bdd = getDb();
 		$requete = $bdd->prepare("SELECT * FROM UTILISATEUR WHERE Login = ?");
@@ -17,6 +18,8 @@
 	        	$estAdmin = true;
 	        }
 	    }
+	} else {
+		header('Location: index.php');
 	}
 ?>
 
@@ -61,6 +64,7 @@
 			
 			<h3> Login : <?php echo $_SESSION["email"]; ?></h3>
 
+			<!-- Formulaire pour changer le mot de passe de l'utilisateur -->
 			<form id="nouveauMdp-form" role="form" action="nouveauMdp.php" method="post">
 			 	<div class="form-group">
 			    	<label for="nouveauMdp-mdp" id="nouveauMdp-label">Nouveau mot de passe</label>
@@ -73,7 +77,7 @@
 			  	<button type="submit" class="btn" id="nouveauMdp-bouton-valider">Valider</button>
 			</form>
 			<?php
-
+				//Si l'utilisateur est un administrateur il peut accéder à la page de gestion des questionnaires
 				if ($estAdmin) {
 					?>
 						<a id='bouton-suppression-modification' href='accueilAdmin.php'>Gestion des questionnaires</a>

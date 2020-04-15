@@ -1,3 +1,4 @@
+<!-- Code pour supprimer une question et les réponses associées -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";

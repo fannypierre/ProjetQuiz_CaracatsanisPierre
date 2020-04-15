@@ -1,3 +1,4 @@
+<!-- Code d'enregistrement du nouveau mot de passe utilisateur -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

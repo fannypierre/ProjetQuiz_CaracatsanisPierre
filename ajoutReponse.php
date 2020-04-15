@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout d'une question dans la BD, et page pour saisir les réponses à associer à la question -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

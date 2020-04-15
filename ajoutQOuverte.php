@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout de la réponse à une QOuverte -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

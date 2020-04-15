@@ -1,3 +1,4 @@
+<!-- Page d'accueil administrateur : possibilité d'ajouter/modifier/Supprimer un quiz -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();

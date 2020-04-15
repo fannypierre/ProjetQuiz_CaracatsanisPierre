@@ -1,3 +1,4 @@
+<!-- Page de choix d'une question à modifier -->
 <?php
     session_start();
     require_once "includes/fonctions.php";
@@ -21,6 +22,7 @@
         ?>
 
         <?php 
+            //Si on est sur cette page parce que la question a été mise à jour on l'indique à l'utilisateur
             if (isset($_SESSION['majQuestion'])) { ?>
                 <div class="alert alert-success" role="alert">
                     Question et réponses mises à jour !
@@ -28,7 +30,8 @@
         <?php   
             } unset($_SESSION['majQuestion']);
         ?>
-        <?php 
+        <?php
+            //Si on est sur cette page parce que une question a été ajoutée au quiz on l'indique à l'utilisateur
             if (isset($_SESSION['ajoutReponses']) && $_SESSION['ajoutReponses']=="ok") { ?>
                 <div class="alert alert-success" role="alert">
                     Question et réponses ajoutées !

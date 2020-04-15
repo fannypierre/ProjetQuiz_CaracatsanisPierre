@@ -1,3 +1,4 @@
+<!-- Code pour l'ajout de la réponse à une QOuverte, dans le cas de l'ajout de la question et non de sa modification -->
 <?php
 	require_once "includes/fonctions.php";
 	session_start();
