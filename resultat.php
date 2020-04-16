@@ -105,7 +105,7 @@ $quizz_id = $_GET['quiz_id'];
                     $requete->execute(array($user, $quizz_id, $score, $time));
                 }
 
-                //Liens pour rejouer le quiz ou revenir à la page d'accueil
+                //Liens pour rejouer le quiz (pop-up permettant de choisir la difficulté) ou revenir à la page d'accueil
                 echo "<p>Vous pouvez <a href='#choixDifficulte'>refaire ce quiz</a> ou <a href='accueilQuiz.php'>retourner à la page d'accueil</a></p>";
                 
                 //Pop-up pour chosisir la difficulté si le joueur veut rejouer
