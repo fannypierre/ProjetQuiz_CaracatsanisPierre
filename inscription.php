@@ -1,7 +1,7 @@
 <!-- Code pour l'inscription d'un nouvel utiliateur -->
 <?php
-	require_once "includes/fonctions.php";
 	session_start();
+	require_once "includes/fonctions.php";
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 	if (!empty($_POST['email']) and !empty($_POST['mdp']) and !empty($_POST['mdp-confirmation'])) { //ATTENTION dans la BD le champ correspondant à l'email s'appelle LOGIN

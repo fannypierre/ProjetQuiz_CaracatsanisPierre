@@ -1,5 +1,5 @@
-<?php require_once "connexionBD.php" ?>
 <?php session_start(); ?>
+<?php require_once "connexionBD.php"; ?>
 <?php if (isset($_SESSION["login"])) $user = $_SESSION["login"];
 else $user = "User"; ?>
 

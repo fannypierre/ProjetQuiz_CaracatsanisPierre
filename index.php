@@ -1,7 +1,7 @@
 <!-- Première page du site : choix de se connecter ou de s'inscrire pour l'utilisateur -->
 <?php
-	require_once "includes/fonctions.php";
 	session_start();
+	require_once "includes/fonctions.php";
 ?>
 
 <html lang="fr">

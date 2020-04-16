@@ -1,7 +1,7 @@
 <!-- Code pour la gestion de la connexion d'un utilisateur -->
 <?php
-	require_once "includes/fonctions.php";
 	session_start();
+	require_once "includes/fonctions.php";
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 	//On vérifie que les champs ont bien été remplis
