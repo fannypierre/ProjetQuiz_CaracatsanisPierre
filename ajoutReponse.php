@@ -1,7 +1,7 @@
-<!-- Code pour l'ajout d'une question dans la BD, et page pour saisir les réponses à associer à la question -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
+	//Code pour l'ajout d'une question dans la BD, et page pour saisir les réponses à associer à la question
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 if (!empty($_POST['question'])) {

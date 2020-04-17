@@ -1,8 +1,8 @@
-<!-- Page du profil de l'utilsateur -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
-
+	//Page du profil de l'utilsateur
+	
 	$estAdmin = false;
 
 	//On vérifie si l'utilisateur est un administrateur (pour changer au besoin l'apparence de la fenetre)
@@ -24,7 +24,7 @@
 ?>
 
 <html lang="fr">
-	
+	<?php require_once "includes/header.php";?>
 	<?php 
 		require_once "includes/head.php";
 
@@ -39,9 +39,6 @@
 			<?php
 		}
 	?>
-
-		<?php require_once "includes/header.php";?>
-
         <?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>
@@ -84,6 +81,8 @@
 					<?php
 				}
 			?>
+			<a id="bouton-deconnexion" href="deconnexion.php">Me déconnecter</a>
+			
 			<p>Consulter le <a href="images/manuelUtilisation.pdf" target=”_blank”>manuel d'utilisation du site</a></p>
 		</div>
 	</body>

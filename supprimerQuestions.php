@@ -1,8 +1,8 @@
-<!-- Page de choix de la question à supprimer -->
 <?php
     session_start();
     require_once "includes/fonctions.php";
     require_once "connexionBD.php";
+    //Page de choix de la question à supprimer
     $quiz_id = $_GET['quiz_id'];
 ?>
 

@@ -1,6 +1,6 @@
-<!-- Page pour choisir quel quiz modifier -->
 <?php
 	session_start();
+	//Page pour choisir quel quiz modifier
 	require_once "includes/fonctions.php";
 	require_once "connexionBD.php";
 ?>

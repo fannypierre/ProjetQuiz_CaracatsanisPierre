@@ -1,8 +1,8 @@
-<!-- Page pour la modification de la réponse d'une QOuverte -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
+//Page pour la modification de la réponse d'une QOuverte
 
 $question_id = $_GET['question_id'];
 $quiz_id = $_GET['quiz_id'];
@@ -69,5 +69,3 @@ if (!empty($_POST['question']) && !empty($_POST['reponse'])) {
 			</form>
 		</div>
 	</body>
-
-

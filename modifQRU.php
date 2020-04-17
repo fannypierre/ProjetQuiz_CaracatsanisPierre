@@ -1,8 +1,8 @@
-<!-- Code pour la modification d'une question, et page pour la modification des questions correspondantes -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
+//Code pour la modification d'une question, et page pour la modification des questions correspondantes
 
 $question_id = $_GET['question_id'];
 $quiz_id = $_GET['quiz_id'];
@@ -95,5 +95,3 @@ if (!empty($_POST['question']) && !empty($_POST['bonne-reponse']) && !empty($_PO
 			</form>
 		</div>
 	</body>
-
-

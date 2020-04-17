@@ -1,8 +1,9 @@
-<!-- Page de choix d'une question à modifier -->
 <?php
     session_start();
     require_once "includes/fonctions.php";
     require_once "connexionBD.php";
+    
+    //Page de choix d'une question à modifier
     $quiz_id = $_GET['quiz_id'];
 ?>
 

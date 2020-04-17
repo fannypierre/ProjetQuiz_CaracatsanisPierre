@@ -1,8 +1,9 @@
-<!-- Code pour la modification des réponses d'une QRM -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
+//Code pour la modification des réponses d'une QRM
+
 unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 $question_id = $_GET['question_id'];

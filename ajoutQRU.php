@@ -1,7 +1,7 @@
-<!-- Code pour l'ajout des réponses à une QRU -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
+	//Code pour l'ajout des réponses à une QRU
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 if (!empty($_POST['bonne-reponse']) && !empty($_POST['mauvaise-reponse-1']) && !empty($_POST['mauvaise-reponse-2']) && !empty($_POST['mauvaise-reponse-3'])) {

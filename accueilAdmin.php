@@ -1,6 +1,6 @@
-<!-- Page d'accueil administrateur : possibilité d'ajouter/modifier/Supprimer un quiz -->
 <?php
-	session_start();
+    session_start();
+    //Page d'accueil administrateur : possibilité d'ajouter/modifier/Supprimer un quiz
 	require_once "includes/fonctions.php";
 ?>
 
@@ -15,7 +15,7 @@
 	        <div id="accueil-admin-bouttons">
 				<a href="nouveauQuiz.php" class="badge">Créer un nouveau quiz</a>
 				<a href="accueilModifQuiz.php" class="badge">Modifier un ancien quiz</a>
-				<a href="supprimerQuestionnaire.php" class="badge">Supprimer un ancien quiz</a>
+				<a href="supprimerQuestionnaire.php" class="badge">Supprimer un quiz</a>
 			</div>
 		</div>
 	</body>

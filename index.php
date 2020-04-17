@@ -1,15 +1,15 @@
-<!-- Première page du site : choix de se connecter ou de s'inscrire pour l'utilisateur -->
 <?php
-	session_start();
+    session_start();
 	require_once "includes/fonctions.php";
+	//Premiere page du site : inscription/connexion
 ?>
 
 <html lang="fr">
 	
-	<?php require_once "includes/head.php"; ?>
+	<?php require_once "includes/head.php";?>
 	
 	<body>
-		<?php require_once "includes/headerConnexion.php"; ?>
+		<?php require_once "includes/headerConnexion.php";?>
 		<?php if (isset($_SESSION['erreur'])) { ?>
             <div class="alert alert-danger">
                 <strong>Erreur !</strong> <?= $_SESSION['erreur'] ?>

@@ -1,11 +1,10 @@
-<!-- Page pour indiquer les informations concernant la question à ajouter à un quiz donné -->
 <?php
+session_start();
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
-session_start();
+//Page pour indiquer les informations concernant la question à ajouter à un quiz donné
 
 $quiz_id = $_GET['quiz_id'];
-
 ?>
 <?php require_once "includes/head.php"; ?>
 	<body id="ecran-admin">
@@ -58,5 +57,3 @@ $quiz_id = $_GET['quiz_id'];
 			</form>
 		</div>
 	</body>
-
-

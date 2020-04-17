@@ -1,7 +1,7 @@
-<!-- Code pour l'ajout de la réponse à une QOuverte, dans le cas de l'ajout de la question et non de sa modification -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
+	//Code pour l'ajout de la réponse à une QOuverte, dans le cas de l'ajout de la question et non de sa modification
 
 $quiz_id = $_GET["quiz_id"];
 

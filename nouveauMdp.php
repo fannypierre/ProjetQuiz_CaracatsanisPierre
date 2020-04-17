@@ -1,7 +1,8 @@
-<!-- Code d'enregistrement du nouveau mot de passe utilisateur -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
+	//Code d'enregistrement du nouveau mot de passe utilisateur
+	
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 	if (!empty($_POST['mdp']) and !empty($_POST['mdp-confirmation'])) {

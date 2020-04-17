@@ -1,6 +1,5 @@
-<!-- Code pour la gestion de la connexion d'un utilisateur -->
 <?php
-	session_start();
+    session_start();
 	require_once "includes/fonctions.php";
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
@@ -8,9 +7,8 @@
 	if ( !empty($_POST['email']) and !empty($_POST['mdp']) ) {
 	    $email = $_POST['email'];
 	    $mdp = $_POST['mdp'];
-	    $req = getDb()->prepare('select * from utilisateur where Login=? and Mdp=?');
+	    $req = getDb()->prepare('select * from UTILISATEUR where Login=? and Mdp=?');
 	    $req->execute(array($email, $mdp));
-
 	    //Si l'utilisateur existe bien
 	    if ($req->rowCount() == 1) {
 	        $_SESSION['email'] = $email;

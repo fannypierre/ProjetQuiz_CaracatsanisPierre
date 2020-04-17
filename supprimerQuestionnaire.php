@@ -1,8 +1,8 @@
-<!-- Page de choix de suppression d'un questionnaire -->
 <?php
     session_start();
     require_once "includes/fonctions.php";
     require_once "connexionBD.php";
+    //Page de choix de suppression d'un questionnaire
 ?>
 
 <html lang="fr">

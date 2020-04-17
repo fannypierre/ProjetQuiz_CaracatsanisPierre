@@ -1,14 +1,13 @@
-<!-- Code pour supprimer un questionnaire entièrement -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
+//Code pour supprimer un questionnaire entièrement
 
 $quiz_id = $_GET['quiz_id'];
 
 $bdd = getDb();
 $questions = get_quizz($quiz_id);
-var_dump($questions);
 
 //Pour chaque question associée au quiz...
 foreach ($questions as $question) {

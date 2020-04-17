@@ -5,16 +5,15 @@ if (isset($_SESSION["email"])) {
 } else {
     $user = "user";
 }
+$cookie_name = "timer";
+$cookie_value = time();
+setcookie($cookie_name, $cookie_value, time() + 86400, "/");
+
 require_once "includes/head.php";
 require_once "includes/header.php";
 require_once "connexionBD.php";
 $quizz_id = $_GET['quiz_id'];
-?>
 
-<?php
-$cookie_name = "timer";
-$cookie_value = time();
-setcookie($cookie_name, $cookie_value, time() + 86400, "/");
 ?>
 
 <!DOCTYPE html>
@@ -34,8 +33,22 @@ setcookie($cookie_name, $cookie_value, time() + 86400, "/");
     $affichage = get_quizz_affichage($quizz_id)["TypeAffichage"];
     echo '<form id="questionnaire" action="resultat.php?quiz_id='.$quizz_id.'" method="post">';
     
+    switch ($_POST["difficulte"]) {
+    case "facile":
+        $difficulte = 0;
+    break;
+    case "moyen":
+        $difficulte = 1;
+    break;
+    case "difficile":
+        $difficulte = 2;
+    break;
+    default:
+        $difficulte = -1;      
+    }
+    
     if ($affichage=="continu") {
-        $lignes = get_quizz($quizz_id);
+        $lignes = get_quizz($quizz_id, $difficulte);
         if (isset($lignes)) {
             $index = 1;
             foreach ($lignes as $ligne) {
@@ -120,7 +133,7 @@ setcookie($cookie_name, $cookie_value, time() + 86400, "/");
         }
     }
     else {
-        $lignes = get_quizz($quizz_id);
+        $lignes = get_quizz($quizz_id, $difficulte);
         $max_lines = count($lignes);
         if (isset($lignes)) {
             $index = 1;
@@ -202,17 +215,15 @@ setcookie($cookie_name, $cookie_value, time() + 86400, "/");
                 }
                 $index++;
                 echo '<br/>';
-                if(($key+1) > 1){
-                    echo "<button type='button' onclick='previousQuestion()' class='btn btn-danger' style='color: white'>Precedent</button>&nbsp;&nbsp;&nbsp;";
+            if($key > 0){
+                    echo "<button type='button' onclick='previousQuestion()' class='btn btn-danger' style='color: white'>Précédent</button>&nbsp;&nbsp;&nbsp;";
                 }
                 
-                if(($key+1) < $max_lines ){
+                if($key < $max_lines -1){
                     echo "<button type='button' onclick='nextQuestion()' class='btn btn-danger' style='color: white'>Suivant</button>";
-                }
-
+            }
                 echo "</div>";
-                
-                
+
             }
         }
     }
@@ -227,7 +238,7 @@ var currentQuestion = 0;
 var max_question = <?php echo isset($max_lines) ? $max_lines : 0; ?>
 
 function nextQuestion(){
-    if(currentQuestion < max_question){
+    if(currentQuestion < max_question - 1){
         currentQuestion += 1;
         var dom = document.querySelector('div[id=question_'+currentQuestion+']');
         if(dom != undefined){
@@ -242,7 +253,7 @@ function nextQuestion(){
 }
 
 function previousQuestion(){
-    if(currentQuestion < max_question){
+    if(currentQuestion > 0){
         currentQuestion -= 1;
         var dom = document.querySelector('div[id=question_'+currentQuestion+']');
         if(dom != undefined){

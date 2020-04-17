@@ -1,8 +1,8 @@
-<!-- Code pour supprimer une question et les réponses associées -->
 <?php
 session_start();	
 require_once "includes/fonctions.php";
 require_once "connexionBD.php";
+//Code pour supprimer une question et les réponses associées
 
 $question_id = $_GET['question_id'];
 $quiz_id = $_GET['quiz_id'];

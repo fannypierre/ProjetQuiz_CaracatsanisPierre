@@ -1,7 +1,7 @@
-<!-- Code pour l'ajout des réponses à une QRM -->
 <?php
+    session_start();
+    //Code pour l'ajout des réponses à une QRM
 	require_once "includes/fonctions.php";
-	session_start();
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"
 
 if (!empty($_POST['reponse-1']) && !empty($_POST['reponse-2']) && !empty($_POST['reponse-3']) && !empty($_POST['reponse-4'])) {

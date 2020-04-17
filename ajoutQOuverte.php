@@ -1,5 +1,5 @@
-<!-- Code pour l'ajout de la réponse à une QOuverte -->
 <?php
+    //Code pour l'ajout de la réponse à une QOuverte
 	require_once "includes/fonctions.php";
 	session_start();
 	unset($_SESSION['erreur']); //On nettoie la variable de session "erreur"

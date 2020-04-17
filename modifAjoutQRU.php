@@ -1,7 +1,7 @@
-<!-- Code pour l'ajout des réponses à une QRU -->
 <?php
+    session_start();
 	require_once "includes/fonctions.php";
-	session_start();
+	//Code pour l'ajout des réponses à une QRU
 
 $quiz_id = $_GET["quiz_id"];
 

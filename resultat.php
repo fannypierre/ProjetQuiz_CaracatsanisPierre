@@ -1,4 +1,8 @@
-<?php 
+<?php
+/*ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 session_start();
 if (isset($_SESSION["email"])) {
     $user = $_SESSION["email"];
@@ -10,6 +14,8 @@ require_once "includes/head.php";
 require_once "includes/header.php";
 require_once "connexionBD.php";
 $quizz_id = $_GET['quiz_id'];
+
+
 ?>
 
 <DOCTYPE html>
@@ -20,10 +26,10 @@ $quizz_id = $_GET['quiz_id'];
         <?php
             //Calcul du temps : récupération du temps actuel et de celui contenu dans le cookie et soustraction
             $timer_end = time();
-            $time = $timer_end - $_COOKIE['timer'];
+            $time = $timer_end - (int)$_COOKIE['timer'];
 
             //Traitement des bonnes réponses
-            $lignes = get_quizz($quizz_id); 
+            $lignes = get_quizz($quizz_id, 2); 
             //Initialisation du score
             $score = 0;
             //Récupération des réponses
@@ -87,21 +93,21 @@ $quizz_id = $_GET['quiz_id'];
 
                     //Enregistrement du score s'il a fait un meilleur score
                     if ($score > $best_score[0]["MeilleurScore"]) {
-                        $requete = $bdd->prepare("UPDATE Score SET MeilleurScore = ? WHERE NumQuestionnaire = ? AND Login = ?");
+                        $requete = $bdd->prepare("UPDATE SCORE SET MeilleurScore = ? WHERE NumQuestionnaire = ? AND Login = ?");
                         $requete->execute(array($score, $quizz_id, $user));
                         echo "Félicitations, vous venez de battre votre record de bonnes réponses !";
                     }
                     
                     //Enregistrement du temps s'il a fait un meilleur temps
                     if ($time < $best_score[0]["MeilleurTemps"]) {
-                        $requete = $bdd->prepare("UPDATE Score SET MeilleurTemps = ? WHERE NumQuestionnaire = ? AND Login = ?");
+                        $requete = $bdd->prepare("UPDATE SCORE SET MeilleurTemps = ? WHERE NumQuestionnaire = ? AND Login = ?");
                         $requete->execute(array($time, $quizz_id, $user));
                         echo "Félicitations, vous venez de battre votre chronomètre!";
                     }
                 }
                 //Enregistrement du score et du temps si le joueur n'a jamais joué au quiz
                 else {
-                    $requete = $bdd->prepare("INSERT INTO Score(Login, NumQuestionnaire, MeilleurScore, MeilleurTemps) VALUE (?, ?, ?, ?)");
+                    $requete = $bdd->prepare("INSERT INTO SCORE(Login, NumQuestionnaire, MeilleurScore, MeilleurTemps) VALUES (?, ?, ?, ?)");
                     $requete->execute(array($user, $quizz_id, $score, $time));
                 }
 
